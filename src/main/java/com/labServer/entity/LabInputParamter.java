@@ -7,10 +7,17 @@ public class LabInputParamter {
   
   private Integer id;
   private String inputProbeNumber;
-  private Date createdOn;
+  private String createdOn;
   private Double inputTemperature;
   private Double inputHumidity;
-  public Integer getId() {
+  private String inputTable;
+  public String getInputTable() {
+	return inputTable;
+}
+public void setInputTable(String inputTable) {
+	this.inputTable = inputTable;
+}
+public Integer getId() {
     return id;
   }
   public void setId(Integer id) {
@@ -22,10 +29,10 @@ public class LabInputParamter {
   public void setInputProbeNumber(String inputProbeNumber) {
     this.inputProbeNumber = inputProbeNumber;
   }
-  public Date getCreatedOn() {
+  public String getCreatedOn() {
     return createdOn;
   }
-  public void setCreatedOn(Date createdOn) {
+  public void setCreatedOn(String createdOn) {
     this.createdOn = createdOn;
   }
   public Double getInputTemperature() {
