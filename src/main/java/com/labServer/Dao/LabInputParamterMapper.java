@@ -17,9 +17,9 @@ public interface LabInputParamterMapper {
 	public int insertLabInputParamterByInputTable(@Param("labInputParamter")LabInputParamter labInputParamter, @Param("inputTable")String inputTable);
 	
 	
-	
-	
-	
+	//String sql = "select AVG(INPUTTEMPERATURE) from " + inputProbNum + " where DATE_SUB('" + createdOn+ "',INTERVAL 10 SECOND ) < CREATEDON";
+	@Select("select AVG(INPUTTEMPERATURE) from ${inputTable} where DATE_SUB(#{labInputParamter.createdOn}, INTERVAL 10 SECOND )< #{labInputParamter.createdOn}")
+	public Double findAVGInputTemperature(@Param("labInputParamter")LabInputParamter labInputParamter, @Param("inputTable")String inputTable);
 	
 	
 	

@@ -5,5 +5,6 @@ import java.util.Map;
 
 public interface LabModifyManager {
 
-  public List<Map<String, Double>> getLabModifyByInputProbNum(String inputProbreNumber);
+  List<Map<String, Double>> getLabModifyByInputProbNum(String inputProbreNumber);
+
 }

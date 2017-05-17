@@ -1,11 +1,13 @@
 package com.labServer.manager;
 
-import org.apache.ibatis.session.SqlSession;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import com.labServer.Dao.LabDisplayParamterMapper;
-import com.labServer.Dao.LabInputParamterMapper;
 import com.labServer.Util.MyBatisUtil;
 import com.labServer.entity.LabDisplayParamter;
+
 
 public class LabDisplayParamterManagerImpl implements LabDisplayParamterManager {
 
@@ -14,11 +16,12 @@ public class LabDisplayParamterManagerImpl implements LabDisplayParamterManager 
    * 
    * @param labInputParamter
    */
-  public void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter) {
+  public void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
+      List<Map<String, Double>> modifys) {
     SqlSession sqlSession = MyBatisUtil.getSqlSession();
-    LabDisplayParamterMapper labDisplayParamterMapper = sqlSession.getMapper(LabDisplayParamterMapper.class);
-    labDisplayParamter.getDisTemperature();
-    
+    LabDisplayParamterMapper labDisplayParamterMapper =
+        sqlSession.getMapper(LabDisplayParamterMapper.class);
+    calParamterByModify(labDisplayParamter, modifys);// 计算校准值
     labDisplayParamterMapper.insertLabDisplayParamter(labDisplayParamter);
     sqlSession.commit();
     sqlSession.close();
@@ -30,14 +33,36 @@ public class LabDisplayParamterManagerImpl implements LabDisplayParamterManager 
    * 
    * @param labInputParamter
    */
-  public void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter, String displayTable) {
+  public void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
+      List<Map<String, Double>> modifys, String displayTable) {
     SqlSession sqlSession = MyBatisUtil.getSqlSession();
     LabDisplayParamterMapper labDisplayParamterMapper =
         sqlSession.getMapper(LabDisplayParamterMapper.class);
+    calParamterByModify(labDisplayParamter, modifys);// 计算校准值
     labDisplayParamterMapper.insertLabDisplayParamterByDisplayTable(labDisplayParamter,
         displayTable);
     sqlSession.commit();
     sqlSession.close();
+
+  }
+
+  /**
+   * 传入显示探头参数对象、校准值，并计算。
+   * 
+   * @param labDisplayParamter
+   * @param modify
+   * @return
+   */
+  public LabDisplayParamter calParamterByModify(LabDisplayParamter labDisplayParamter,
+      List<Map<String, Double>> modifys) {
+    // 遍历校准 并对温湿进行赋值（暂无光照）
+    for (Map<String, Double> modify : modifys) {
+      labDisplayParamter
+          .setDisTemperature(modify.get("DISTEMPERATURE") + labDisplayParamter.getDisTemperature());
+      labDisplayParamter
+          .setDisHumidity(modify.get("DISHUMIDITY") + labDisplayParamter.getDisHumidity());
+    }
+    return labDisplayParamter;
 
   }
 

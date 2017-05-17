@@ -7,9 +7,9 @@ public class LabModify {
   private Integer id;
   private String inputProbeNumber;
   private String disProbeNumber;
-  private Date modifyOn;
-  private Date createdOn;
-  private Date stopEnd;
+  private String modifyOn;
+  private String createdOn;
+  private String stopEnd;
   private String modifyParamter;
   private Double modifyNumber;
   private String Status;
@@ -39,27 +39,28 @@ public class LabModify {
     this.disProbeNumber = disProbeNumber;
   }
 
-  public Date getModifyOn() {
+
+  public String getModifyOn() {
     return modifyOn;
   }
 
-  public void setModifyOn(Date modifyOn) {
+  public void setModifyOn(String modifyOn) {
     this.modifyOn = modifyOn;
   }
 
-  public Date getCreatedOn() {
+  public String getCreatedOn() {
     return createdOn;
   }
 
-  public void setCreatedOn(Date createdOn) {
+  public void setCreatedOn(String createdOn) {
     this.createdOn = createdOn;
   }
 
-  public Date getStopEnd() {
+  public String getStopEnd() {
     return stopEnd;
   }
 
-  public void setStopEnd(Date stopEnd) {
+  public void setStopEnd(String stopEnd) {
     this.stopEnd = stopEnd;
   }
 

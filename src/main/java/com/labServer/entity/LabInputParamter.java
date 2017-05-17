@@ -10,15 +10,6 @@ public class LabInputParamter {
   private String createdOn;
   private Double inputTemperature;
   private Double inputHumidity;
-  private String inputTable;
-
-  public String getInputTable() {
-    return inputTable;
-  }
-
-  public void setInputTable(String inputTable) {
-    this.inputTable = inputTable;
-  }
 
   public Integer getId() {
     return id;
@@ -64,6 +55,19 @@ public class LabInputParamter {
   public String toString() {
     return "LabInputparamter [inputProbeNumber=" + inputProbeNumber + ", createdOn=" + createdOn
         + ", inputTemperature=" + inputTemperature + ", inputHumidity=" + inputHumidity + "]";
+  }
+
+  public LabInputParamter(String inputProbeNumber, String createdOn, Double inputTemperature,
+      Double inputHumidity) {
+    super();
+    this.inputProbeNumber = inputProbeNumber;
+    this.createdOn = createdOn;
+    this.inputTemperature = inputTemperature;
+    this.inputHumidity = inputHumidity;
+  }
+
+  public LabInputParamter() {
+    super();
   }
 
 

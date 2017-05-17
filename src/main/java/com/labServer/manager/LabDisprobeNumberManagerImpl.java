@@ -5,7 +5,7 @@ import com.labServer.Dao.LabDisprobeNumberMapper;
 import com.labServer.Util.MyBatisUtil;
 import com.labServer.entity.LabDisprobeNumber;
 
-public class LabDisprobeNumberManagerImpl {
+public class LabDisprobeNumberManagerImpl implements LabDisprobeNumberManager {
 
   /**
    * 通过原探头号查找对应探头映射表实力
@@ -17,6 +17,7 @@ public class LabDisprobeNumberManagerImpl {
     SqlSession sqlSession = MyBatisUtil.getSqlSession();
     LabDisprobeNumberMapper mapper = sqlSession.getMapper(LabDisprobeNumberMapper.class);
     LabDisprobeNumber labDisprobeNumber = mapper.getDisprobeNumberByInputProbNum(inputProbeNumber);
+    sqlSession.commit();
     sqlSession.close();
     return labDisprobeNumber;
   }

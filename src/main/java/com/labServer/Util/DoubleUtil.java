@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 
 
-public class DoubleTest {
+public class DoubleUtil {
 	// Ĭ�ϳ����㾫�ȣ�С����2λ
 	private static final Integer DEF_DIV_SCALE = 2;
 
@@ -27,7 +27,7 @@ public class DoubleTest {
 	 * @param y
 	 * @return x+y
 	 */
-	public static String getDoubleToStringValueByBigDecimalAdd(Double x, Double y) {
+	public static String getDoubleValueByBigDecimalAdd(Double x, Double y) {
 
 		BigDecimal x1 = new BigDecimal(Double.toString(x));
 		BigDecimal y1 = new BigDecimal(Double.toString(y));

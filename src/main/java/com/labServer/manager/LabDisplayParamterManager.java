@@ -1,10 +1,15 @@
 package com.labServer.manager;
 
+import java.util.List;
+import java.util.Map;
+
 import com.labServer.entity.LabDisplayParamter;
 
 public interface LabDisplayParamterManager {
 
-  public void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter);
+  void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
+      List<Map<String, Double>> modify);
 
-  public void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter, String displayTable);
+  void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
+      List<Map<String, Double>> modifys, String displayTable);
 }

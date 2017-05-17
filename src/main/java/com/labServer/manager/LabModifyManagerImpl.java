@@ -10,7 +10,7 @@ import com.labServer.Dao.LabModifyMapper;
 import com.labServer.Util.MyBatisUtil;
 import com.labServer.entity.LabModify;
 
-public class LabModifyManagerImpl {
+public class LabModifyManagerImpl implements LabModifyManager {
 
   /**
    * 通过原探头名找到探头校正实例
@@ -23,12 +23,14 @@ public class LabModifyManagerImpl {
     LabModifyMapper mapper = sqlSession.getMapper(LabModifyMapper.class);
     List<LabModify> labModifys = mapper.getLabModifyByInputProbNum(inputProbreNumber);
     List<Map<String, Double>> modify = new ArrayList<Map<String, Double>>();
+    sqlSession.commit();
+    sqlSession.close();
+
     HashMap<String, Double> modifyMap = new HashMap<String, Double>();
     for (LabModify labModify : labModifys) {
       modifyMap.put(labModify.getModifyParamter(), labModify.getModifyNumber());
       modify.add(modifyMap);
     }
-    sqlSession.close();
     return modify;
   }
 }

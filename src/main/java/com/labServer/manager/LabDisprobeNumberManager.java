@@ -4,7 +4,7 @@ import com.labServer.entity.LabDisprobeNumber;
 
 public interface LabDisprobeNumberManager {
 
-  public LabDisprobeNumber getDisprobeNumberByInputProbNum(String inputProbeNumber);
+  LabDisprobeNumber getDisprobeNumberByInputProbNum(String inputProbeNumber);
 
 
 }

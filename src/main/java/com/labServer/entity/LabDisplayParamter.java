@@ -7,7 +7,7 @@ public class LabDisplayParamter {
   private Integer id;
   private String inputProbeNumber;
   private String disProbeNumber;
-  private Date createdOn;
+  private String createdOn;
   private Double disTemperature;
   private Double disHumidity;
 
@@ -35,11 +35,11 @@ public class LabDisplayParamter {
     this.disProbeNumber = disProbeNumber;
   }
 
-  public Date getCreatedOn() {
+  public String getCreatedOn() {
     return createdOn;
   }
 
-  public void setCreatedOn(Date createdOn) {
+  public void setCreatedOn(String createdOn) {
     this.createdOn = createdOn;
   }
 
@@ -64,6 +64,20 @@ public class LabDisplayParamter {
     return "LabDisplayParamter [inputProbeNumber=" + inputProbeNumber + ", disProbeNumber="
         + disProbeNumber + ", createdOn=" + createdOn + ", disTemperature=" + disTemperature
         + ", disHumidity=" + disHumidity + "]";
+  }
+
+  public LabDisplayParamter(String inputProbeNumber, String disProbeNumber, String createdOn,
+      Double disTemperature, Double disHumidity) {
+    super();
+    this.inputProbeNumber = inputProbeNumber;
+    this.disProbeNumber = disProbeNumber;
+    this.createdOn = createdOn;
+    this.disTemperature = disTemperature;
+    this.disHumidity = disHumidity;
+  }
+
+  public LabDisplayParamter() {
+    super();
   }
 
 

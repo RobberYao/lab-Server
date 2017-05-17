@@ -9,9 +9,9 @@ public class LabDisprobeNumber {
   private Integer id;
   private String inputProbeNumber;
   private String displayProbeNumber;
-  private Date create_time;
-  private String tab_inputName;
-  private String tab_displayName;
+  private String create_time;
+  private String tab_InputName;
+  private String tab_DisplayName;
 
   public Integer getId() {
     return id;
@@ -37,35 +37,28 @@ public class LabDisprobeNumber {
     this.displayProbeNumber = displayProbeNumber;
   }
 
-  public Date getCreate_time() {
+  public String getCreate_time() {
     return create_time;
   }
 
-  public void setCreate_time(Date create_time) {
+  public void setCreate_time(String create_time) {
     this.create_time = create_time;
   }
 
-  public String getTab_inputName() {
-    return tab_inputName;
+  public String getTab_InputName() {
+    return tab_InputName;
   }
 
-  public void setTab_inputName(String tab_inputName) {
-    this.tab_inputName = tab_inputName;
+  public void setTab_InputName(String tab_InputName) {
+    this.tab_InputName = tab_InputName;
   }
 
-  public String getTab_displayName() {
-    return tab_displayName;
+  public String getTab_DisplayName() {
+    return tab_DisplayName;
   }
 
-  public void setTab_displayName(String tab_displayName) {
-    this.tab_displayName = tab_displayName;
-  }
-
-  @Override
-  public String toString() {
-    return "LabDisprobenumber [inputProbeNumber=" + inputProbeNumber + ", displayProbeNumber="
-        + displayProbeNumber + ", create_time=" + create_time + ", tab_inputName=" + tab_inputName
-        + ", tab_displayName=" + tab_displayName + "]";
+  public void setTab_DisplayName(String tab_DisplayName) {
+    this.tab_DisplayName = tab_DisplayName;
   }
 
 

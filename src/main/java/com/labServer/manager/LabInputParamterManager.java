@@ -4,8 +4,11 @@ import com.labServer.entity.LabInputParamter;
 
 public interface LabInputParamterManager {
 
-  public void addLabInputParamter(LabInputParamter labInputParamter);
+  void addLabInputParamter(LabInputParamter labInputParamter);
 
-  public void addLabInputParamterByDynamicTableName(LabInputParamter labInputParamter, String inputTable);
+  void addLabInputParamterByDynamicTableName(LabInputParamter labInputParamter, String inputTable);
 
+  Double getAVGInputTemperatureByCreatedOn(LabInputParamter labInputParamter, String inputTable);
+
+  Double OptimizedTemp(Double temperature, Double avgTemperature);
 }
