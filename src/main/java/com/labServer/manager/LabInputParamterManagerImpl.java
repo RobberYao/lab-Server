@@ -1,8 +1,9 @@
 package com.labServer.manager;
 
 import org.apache.ibatis.session.SqlSession;
-import com.labServer.Dao.LabInputParamterMapper;
+
 import com.labServer.Util.MyBatisUtil;
+import com.labServer.mapping.LabInputParamterMapper;
 import com.labServer.model.LabInputParamter;
 
 public class LabInputParamterManagerImpl implements LabInputParamterManager {
@@ -13,13 +14,14 @@ public class LabInputParamterManagerImpl implements LabInputParamterManager {
    * @param labInputParamter
    */
   public void addLabInputParamter(LabInputParamter labInputParamter) {
-    SqlSession sqlSession = MyBatisUtil.getSqlSession();
-    LabInputParamterMapper labInputParamterMapper =
-        sqlSession.getMapper(LabInputParamterMapper.class);
-    int i = labInputParamterMapper.insertLabInputParamter(labInputParamter);
+    SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+    // LabInputParamterMapper labInputParamterMapper =sqlSession.getMapper(LabInputParamterMapper.class);
+    // int i = labInputParamterMapper.insertLabInputParamter(labInputParamter);
+    String statement ="com.labServer.mapping.LabInputParamterMapper.addInputParams";
+    int i= sqlSession.insert(statement,labInputParamter);
     sqlSession.commit();// 手动提交事务
     sqlSession.close();
-   // System.out.println("i   :" + i);
+    System.out.println("i   :" + i);
   }
 
   /**

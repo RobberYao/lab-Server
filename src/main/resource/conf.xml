@@ -19,11 +19,14 @@
          </environment>
      </environments>
      
-     <!-- 在配置文件中 关联包下的 接口类-->
+     <!-- 在配置文件中 关联包下的 接口类（点.）xml（斜杠/）-->
      <mappers>
-         <mapper class="com.labServer.Dao.LabDisplayParamterMapper"/>
-         <mapper class="com.labServer.Dao.LabDisprobeNumberMapper"/>
-         <mapper class="com.labServer.Dao.LabInputParamterMapper"/>
-         <mapper class="com.labServer.Dao.LabModifyMapper"/>
+         <mapper class="com.labServer.mapping.LabDisplayParamterMapper"/>
+         <mapper class="com.labServer.mapping.LabDisprobeNumberMapper"/>
+         <mapper class="com.labServer.mapping.LabInputParamterMapper"/>
+         <mapper class="com.labServer.mapping.LabModifyMapper"/>
+         <mapper resource="com/labServer/mapping/LabInputParamterMapper.xml"/>
+         
+         
      </mappers>
 </configuration>

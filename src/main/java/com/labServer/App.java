@@ -6,12 +6,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.labServer.Dao.LabModifyMapper;
 import com.labServer.manager.LabDisplayParamterManager;
 import com.labServer.manager.LabDisprobeNumberManagerImpl;
 import com.labServer.manager.LabInputParamterManager;
 import com.labServer.manager.LabInputParamterManagerImpl;
 import com.labServer.manager.LabModifyManagerImpl;
+import com.labServer.mapping.LabModifyMapper;
 import com.labServer.model.LabDisprobeNumber;
 import com.labServer.model.LabInputParamter;
 import com.labServer.model.LabModify;
@@ -48,8 +48,11 @@ public class App {
     labInputParamter.setInputTemperature(Double.valueOf("33.33"));
     labInputParamter.setInputHumidity(Double.valueOf("22.22"));
     String inputTable = "lab_inputparamter0102";
-    double avg= labInputParamterManager.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTable);
-    labInputParamterManager.OptimizedTemp(33.3, avg);
+    
+    labInputParamterManager.addLabInputParamter(labInputParamter);
+    
+    //double avg= labInputParamterManager.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTable);
+    //labInputParamterManager.OptimizedTemp(33.3, avg);
     
     long checkendTime = System.currentTimeMillis();// 计时结束
     float seconds = (checkendTime - checkstartTime) / 1000F;// 计算耗时

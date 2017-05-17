@@ -1,4 +1,4 @@
-package com.labServer.Dao;
+package com.labServer.mapping;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
