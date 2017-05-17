@@ -19,8 +19,7 @@ public class LabDisplayParamterManagerImpl implements LabDisplayParamterManager 
   public void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
       List<Map<String, Double>> modifys) {
     SqlSession sqlSession = MyBatisUtil.getSqlSession();
-    LabDisplayParamterMapper labDisplayParamterMapper =
-        sqlSession.getMapper(LabDisplayParamterMapper.class);
+    LabDisplayParamterMapper labDisplayParamterMapper = sqlSession.getMapper(LabDisplayParamterMapper.class);
     calParamterByModify(labDisplayParamter, modifys);// 计算校准值
     labDisplayParamterMapper.insertLabDisplayParamter(labDisplayParamter);
     sqlSession.commit();
