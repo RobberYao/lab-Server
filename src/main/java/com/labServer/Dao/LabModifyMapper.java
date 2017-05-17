@@ -7,13 +7,13 @@ import com.labServer.entity.LabModify;
 
 public interface LabModifyMapper {
 
-	/**
-	 * 通过原探头名找到探头校正实例
-	 * 
-	 * @param inputProbreNumber
-	 * @return
-	 */
-	@Select("select * from lab_modify where INPUTPROBENUMBER = #{inputProbeNumber}")
-	List<LabModify> getLabModifyByInputProbNum(String inputProbeNumber);
+  /**
+   * 通过原探头名找到探头校正实例
+   * 
+   * @param inputProbreNumber
+   * @return
+   */
+  @Select("select * from lab_modify where INPUTPROBENUMBER =#{inputProbeNumber} and STATUS = 'Y' ")
+  List<LabModify> getLabModifyByInputProbNum(String inputProbeNumber);
 
 }

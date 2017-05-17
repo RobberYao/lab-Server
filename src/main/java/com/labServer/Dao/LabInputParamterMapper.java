@@ -14,7 +14,7 @@ public interface LabInputParamterMapper {
 	
 	
 	@Insert("insert into ${inputTable} (INPUTPROBENUMBER,CREATEDON,INPUTTEMPERATURE,INPUTHUMIDITY) values(#{labInputParamter.inputProbeNumber}, #{labInputParamter.createdOn}, #{labInputParamter.inputTemperature}, #{labInputParamter.inputHumidity})")
-	public int insertLabInputParamter1(@Param("labInputParamter")LabInputParamter labInputParamter,@Param("inputTable")String inputTable);
+	public int insertLabInputParamterByInputTable(@Param("labInputParamter")LabInputParamter labInputParamter, @Param("inputTable")String inputTable);
 	
 	
 	

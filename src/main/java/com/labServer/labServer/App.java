@@ -4,15 +4,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.labServer.Dao.LabModifyMapper;
 import com.labServer.entity.LabDisprobeNumber;
 import com.labServer.entity.LabInputParamter;
 import com.labServer.entity.LabModify;
 import com.labServer.manager.LabDisplayParamterManager;
-import com.labServer.manager.LabDisprobeNumberManager;
-import com.labServer.manager.LabInputParamterManager;
-import com.labServer.manager.LabModifyManager;
+import com.labServer.manager.LabDisprobeNumberManagerImpl;
+import com.labServer.manager.LabInputParamterManagerImpl;
+import com.labServer.manager.LabModifyManagerImpl;
 
 /**
  * Hello world!
@@ -21,19 +22,18 @@ import com.labServer.manager.LabModifyManager;
 public class App {
 	public static void main(String[] args) {
 		long checkstartTime = System.currentTimeMillis();// 开始计时
-		// labModifyManager = new LabModifyManager();
-		// List<LabModify> labModify =
-		// labModifyManager.getLabModifyByInputProbNum("8AD0000101");
+		LabModifyManagerImpl labModifyManager = new LabModifyManagerImpl();
+		 List<Map<String, Double>> labModify =labModifyManager.getLabModifyByInputProbNum("8AD0000101");
 
-		LabInputParamter labInputParamter = new LabInputParamter();
-		labInputParamter.setCreatedOn("2017-01-01 00:00:00");
-		labInputParamter.setInputProbeNumber("8AD0000101");
-		labInputParamter.setInputTemperature(Double.valueOf("33.33"));
-		labInputParamter.setInputHumidity(Double.valueOf("22.22"));
-		//labInputParamter.setInputTable("lab_inputparamter0101");
-		String inputTable ="lab_inputparamter0101";
-		LabInputParamterManager labInputParamterManager = new LabInputParamterManager();
-		labInputParamterManager.addLabInputParamterByDynamicTableName(labInputParamter,inputTable);
+//		LabInputParamter labInputParamter = new LabInputParamter();
+//		labInputParamter.setCreatedOn("2017-01-01 00:00:00");
+//		labInputParamter.setInputProbeNumber("8AD0000101");
+//		labInputParamter.setInputTemperature(Double.valueOf("33.33"));
+//		labInputParamter.setInputHumidity(Double.valueOf("22.22"));
+//		//labInputParamter.setInputTable("lab_inputparamter0101");
+//		String inputTable ="lab_inputparamter0101";
+//		LabInputParamterManager labInputParamterManager = new LabInputParamterManager();
+//		labInputParamterManager.addLabInputParamterByDynamicTableName(labInputParamter,inputTable);
 
 		long checkendTime = System.currentTimeMillis();// 计时结束
 		float seconds = (checkendTime - checkstartTime) / 1000F;// 计算耗时

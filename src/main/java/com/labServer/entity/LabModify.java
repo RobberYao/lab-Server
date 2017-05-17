@@ -11,7 +11,7 @@ public class LabModify {
   private Date createdOn;
   private Date stopEnd;
   private String modifyParamter;
-  private Integer modifyNumber;
+  private Double modifyNumber;
   private String Status;
   private String name;
 
@@ -71,11 +71,11 @@ public class LabModify {
     this.modifyParamter = modifyParamter;
   }
 
-  public Integer getModifyNumber() {
+  public Double getModifyNumber() {
     return modifyNumber;
   }
 
-  public void setModifyNumber(Integer modifyNumber) {
+  public void setModifyNumber(Double modifyNumber) {
     this.modifyNumber = modifyNumber;
   }
 

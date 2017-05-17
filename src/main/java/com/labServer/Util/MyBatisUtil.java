@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyBatisUtil {
-//http://www.cnblogs.com/xdp-gacl/p/4262895.html
+  // http://www.cnblogs.com/xdp-gacl/p/4262895.html
   /**
    * 获取SqlSessionFactory
    * 
@@ -21,12 +21,10 @@ public class MyBatisUtil {
 
   }
 
-
   public static SqlSession getSqlSession() {
     return getSqlSessionFactory().openSession();
 
   }
-
 
   public static SqlSession getSqlSession(boolean isAutoCommit) {
     return getSqlSessionFactory().openSession(isAutoCommit);
