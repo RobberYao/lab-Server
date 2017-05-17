@@ -3,7 +3,7 @@ package com.labServer.manager;
 import org.apache.ibatis.session.SqlSession;
 import com.labServer.Dao.LabInputParamterMapper;
 import com.labServer.Util.MyBatisUtil;
-import com.labServer.entity.LabInputParamter;
+import com.labServer.model.LabInputParamter;
 
 public class LabInputParamterManagerImpl implements LabInputParamterManager {
 

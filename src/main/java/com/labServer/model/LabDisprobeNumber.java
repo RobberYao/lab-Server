@@ -1,4 +1,4 @@
-package com.labServer.entity;
+package com.labServer.model;
 
 import java.util.Date;
 

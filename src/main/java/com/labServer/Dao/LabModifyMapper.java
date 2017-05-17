@@ -3,7 +3,8 @@ package com.labServer.Dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
-import com.labServer.entity.LabModify;
+
+import com.labServer.model.LabModify;
 
 public interface LabModifyMapper {
 

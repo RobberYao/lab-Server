@@ -3,7 +3,7 @@ package com.labServer.manager;
 import org.apache.ibatis.session.SqlSession;
 import com.labServer.Dao.LabDisprobeNumberMapper;
 import com.labServer.Util.MyBatisUtil;
-import com.labServer.entity.LabDisprobeNumber;
+import com.labServer.model.LabDisprobeNumber;
 
 public class LabDisprobeNumberManagerImpl implements LabDisprobeNumberManager {
 

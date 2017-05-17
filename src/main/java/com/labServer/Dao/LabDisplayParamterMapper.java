@@ -3,7 +3,7 @@ package com.labServer.Dao;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 
-import com.labServer.entity.LabDisplayParamter;
+import com.labServer.model.LabDisplayParamter;
 
 public interface LabDisplayParamterMapper {
 

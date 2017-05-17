@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.labServer.Dao.LabModifyMapper;
-import com.labServer.entity.LabDisprobeNumber;
-import com.labServer.entity.LabInputParamter;
-import com.labServer.entity.LabModify;
 import com.labServer.manager.LabDisplayParamterManager;
 import com.labServer.manager.LabDisprobeNumberManagerImpl;
 import com.labServer.manager.LabInputParamterManager;
 import com.labServer.manager.LabInputParamterManagerImpl;
 import com.labServer.manager.LabModifyManagerImpl;
+import com.labServer.model.LabDisprobeNumber;
+import com.labServer.model.LabInputParamter;
+import com.labServer.model.LabModify;
 
 /**
  * Hello world!

@@ -2,7 +2,7 @@ package com.labServer.Dao;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.labServer.entity.LabDisprobeNumber;
+import com.labServer.model.LabDisprobeNumber;
 
 public interface LabDisprobeNumberMapper {
 

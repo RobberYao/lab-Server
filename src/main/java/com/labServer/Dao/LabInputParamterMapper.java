@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.labServer.entity.LabInputParamter;
+import com.labServer.model.LabInputParamter;
 
 public interface LabInputParamterMapper {
 

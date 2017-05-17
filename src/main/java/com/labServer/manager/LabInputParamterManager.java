@@ -1,6 +1,6 @@
 package com.labServer.manager;
 
-import com.labServer.entity.LabInputParamter;
+import com.labServer.model.LabInputParamter;
 
 public interface LabInputParamterManager {
 

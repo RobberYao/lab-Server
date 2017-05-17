@@ -8,7 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import com.labServer.Dao.LabModifyMapper;
 import com.labServer.Util.MyBatisUtil;
-import com.labServer.entity.LabModify;
+import com.labServer.model.LabModify;
 
 public class LabModifyManagerImpl implements LabModifyManager {
 

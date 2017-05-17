@@ -1,6 +1,6 @@
 package com.labServer.manager;
 
-import com.labServer.entity.LabDisprobeNumber;
+import com.labServer.model.LabDisprobeNumber;
 
 public interface LabDisprobeNumberManager {
 
