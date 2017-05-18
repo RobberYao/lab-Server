@@ -36,12 +36,12 @@ public class Function {
 					+ ",000 005 004 000 002 " + ",000 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
 					+ ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
 			function.loadParamBySCM(str);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				//Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			// String str1 = "+YAV:0005AABB" + ",822 000 000 007 001 " + ",920
 			// 000 000 007 001 " + ",000
 			// 001 007 000 000 "
@@ -83,7 +83,7 @@ public class Function {
 		LabInputParamter labInputParamter;
 		LabDisplayParamter labDisplayParamter;
 		List<Map<String, Double>> modifys;
-		int w=0;
+		int w = 0;
 		List<LabInputParamter> listInputItems = new ArrayList<LabInputParamter>();// 批量原数据
 		List<LabDisplayParamter> listDisplayItems = new ArrayList<LabDisplayParamter>();// 批量显示数据
 
@@ -116,14 +116,15 @@ public class Function {
 					// humidity);
 
 					// 组装原数据对象
-					labInputParamter = new LabInputParamter(inputProbNum, createdOn, temperature, humidity);
+					labInputParamter = new LabInputParamter(inputProbNum, createdOn, temperature, humidity,
+							inputTabName);
 					// 写入原数据分表（为了数据优化只能舍弃原数据的分表批量业务）
 					labInputParamterManager.addLabInputParamter(labInputParamter);//
 					// 加入原始批量数据
 					listInputItems.add(labInputParamter);
 					// 组装显示显示数据对象
 					labDisplayParamter = new LabDisplayParamter(inputProbNum, displayProbNum, createdOn, temperature,
-							humidity);
+							humidity, displayTabName);
 					// AVG for Temperture 10sec
 					labDisplayParamter.setDisTemperature(
 							labInputParamterManager.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTabName));
@@ -131,9 +132,9 @@ public class Function {
 					labDisplayParamterManager.calParamterByModify(labDisplayParamter, modifys);
 					// 加入显示批量数据
 					listDisplayItems.add(labDisplayParamter);
-
+					System.out.println("DisSize ："+listDisplayItems.size());
 					if (listDisplayItems.size() >= 10) {
-						
+
 						// 写入显示数据表
 						labDisplayParamterManager.addListItemsToDiffDisplay(listDisplayItems);
 						// 写入原始数据汇总表
@@ -144,7 +145,7 @@ public class Function {
 						listInputItems.clear();
 						w++;
 						System.out.println(w);
-						
+
 					}
 
 				}
