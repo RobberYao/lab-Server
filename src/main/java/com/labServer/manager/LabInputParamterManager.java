@@ -10,11 +10,9 @@ public interface LabInputParamterManager {
 
   void addLabInputParamter(LabInputParamter labInputParamter);
 
-  void addLabInputParamterByDynamicTableName(LabInputParamter labInputParamter);
-
-  void addListItemsToSum(@Param("list")List<LabInputParamter> list);
+  void addListItemsToSumInput(@Param("list")List<LabInputParamter> list);
   
-  void addListItemsToDiff(@Param("list")List<LabInputParamter> list);
+  void addListItemsToDiffInput(@Param("list")List<LabInputParamter> list);
 
   Double getAVGInputTemperatureByCreatedOn(LabInputParamter labInputParamter, String inputTable);
 
