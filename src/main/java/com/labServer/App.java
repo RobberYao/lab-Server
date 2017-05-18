@@ -2,6 +2,7 @@ package com.labServer;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -41,16 +42,34 @@ public class App {
     // LabModifyManagerImpl labModifyManager = new LabModifyManagerImpl();
     // List<Map<String, Double>> labModify =
     // labModifyManager.getLabModifyByInputProbNum("8AD0000101");
-
-    LabInputParamter labInputParamter = new LabInputParamter();
-    labInputParamter.setCreatedOn("2017-05-17 11:11:00");
-    labInputParamter.setInputProbeNumber("8AD0000102");
-    labInputParamter.setInputTemperature(Double.valueOf("33.33"));
-    labInputParamter.setInputHumidity(Double.valueOf("22.22"));
-    String inputTable = "lab_inputparamter0102";
+    List<LabInputParamter> list= new ArrayList<LabInputParamter>();
+    for (int i = 0; i < 2; i++) {
+      
+      LabInputParamter labInputParamter = new LabInputParamter();
+      labInputParamter.setCreatedOn("2017-05-17 11:11:00");
+      labInputParamter.setInputProbeNumber("8AD0000101");
+      labInputParamter.setInputTemperature(Double.valueOf("1.33"));
+      labInputParamter.setInputHumidity(Double.valueOf("22.22"));
+      labInputParamter.setInputTableName("lab_inputparamter0101");
+      list.add(labInputParamter);
+      
+      LabInputParamter labInputParamter1 = new LabInputParamter();
+      labInputParamter1.setCreatedOn("2017-05-17 11:11:00");
+      labInputParamter1.setInputProbeNumber("8AD0000102");
+      labInputParamter1.setInputTemperature(Double.valueOf("1.33"));
+      labInputParamter1.setInputHumidity(Double.valueOf("22.22"));
+      labInputParamter1.setInputTableName("lab_inputparamter0102");
+      list.add(labInputParamter1);
+      
+      
+      
+    }
     
-    labInputParamterManager.addLabInputParamter(labInputParamter);
+    //String inputTable = "lab_inputparamter0102";
     
+    // labInputParamterManager.addLabInputParamter(labInputParamter);
+    //labInputParamterManager.addListItems(list);
+    labInputParamterManager.addListItemsToDiff(list);
     //double avg= labInputParamterManager.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTable);
     //labInputParamterManager.OptimizedTemp(33.3, avg);
     

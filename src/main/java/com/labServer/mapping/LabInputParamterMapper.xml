@@ -3,12 +3,48 @@
 
 
 <mapper namespace="com.labServer.mapping.LabInputParamterMapper">
-
+	<!-- 单次插入一条（固定表名 原始数据汇总表） -->
 	<insert id="addInputParams" parameterType="com.labServer.model.LabInputParamter">
-		insert into
-		lab_inputparamter (INPUTPROBENUMBER,CREATEDON,INPUTTEMPERATURE,INPUTHUMIDITY)
-		values(#{inputProbeNumber}, #{createdOn}, #{inputTemperature},#{inputHumidity})
+		insert into lab_inputparamter (INPUTPROBENUMBER,CREATEDON,INPUTTEMPERATURE,INPUTHUMIDITY) values (#{inputProbeNumber}, #{createdOn}, #{inputTemperature}, #{inputHumidity})
 	</insert>
+
+	<!-- 批量插入数据（固定表名 原始数据汇总表） -->
+	<insert id="addListItemsToSum" parameterType="com.labServer.model.LabInputParamter">
+		insert into lab_inputparamter(INPUTPROBENUMBER,CREATEDON,INPUTTEMPERATURE,INPUTHUMIDITY) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.inputProbeNumber}, #{item.createdOn}, #{item.inputTemperature}, #{item.inputHumidity})
+		</foreach>
+	</insert>
+
+	<!-- 批量插入数据（动态表名 ） -->
+	<insert id="addListItemsToDiff" parameterType="com.labServer.model.LabInputParamter" statementType="STATEMENT" >
+		<foreach collection="list" item="item" index="index" separator=";">
+			insert into ${item.inputTableName} (INPUTPROBENUMBER,CREATEDON,INPUTTEMPERATURE,INPUTHUMIDITY) VALUES
+			( '${item.inputProbeNumber}', '${item.createdOn}',  ${item.inputTemperature},  ${item.inputHumidity})
+		</foreach>
+	</insert>
+
+
+
+
+
+
+
+
+
+
+
+	<insert id="addInputParamsByDynamicTableName" parameterType="com.labServer.model.LabInputParamter"
+		statementType="STATEMENT">
+		insert into
+		${inputTableName}
+		values
+		(${inputProbeNumber},${createdOn},${inputTemperature},${inputHumidity})
+	</insert>
+
+
+
+
 
 
 

@@ -12,4 +12,7 @@ public interface LabDisplayParamterManager {
 
   void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
       List<Map<String, Double>> modifys, String displayTable);
+  
+  LabDisplayParamter calParamterByModify(LabDisplayParamter labDisplayParamter,
+      List<Map<String, Double>> modifys);
 }
