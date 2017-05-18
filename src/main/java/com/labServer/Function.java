@@ -132,6 +132,7 @@ public class Function {
 					labDisplayParamterManager.calParamterByModify(labDisplayParamter, modifys);
 					// 加入显示批量数据
 					listDisplayItems.add(labDisplayParamter);
+					System.out.println("inputSize  :"+listInputItems.size());
 					System.out.println("DisSize ："+listDisplayItems.size());
 					if (listDisplayItems.size() >= 10) {
 
@@ -144,7 +145,7 @@ public class Function {
 						listDisplayItems.clear();
 						listInputItems.clear();
 						w++;
-						System.out.println(w);
+						System.out.println("w  :"+w);
 
 					}
 
