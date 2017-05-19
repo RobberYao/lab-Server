@@ -26,7 +26,6 @@ public class LabInputParamterManagerImpl implements LabInputParamterManager {
 		int i = sqlSession.insert(statement, labInputParamter);
 		sqlSession.commit();// 手动提交事务
 		sqlSession.close();
-		System.out.println("i   :" + i);
 	}
 
 	/**

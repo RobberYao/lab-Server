@@ -17,9 +17,6 @@
 			( '${item.inputProbeNumber}', '${item.disProbeNumber}','${item.createdOn}',${item.disTemperature},${item.disHumidity})
 		</foreach>
 	</insert>
-
-
-
 </mapper>
 
 
