@@ -49,8 +49,7 @@ public class Function {
           + ",820 000 008 001 003 " + ",820 005 004 000 002 " + ",820 00C 00B 008 008 "
           + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
       function.loadParamBySCM(str1);
-      
-      
+
       String str2 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 "
           + ",820 001 007 000 000 " + ",820 001 008 000 000 " + ",820 000 004 000 000 "
           + ",820 000 008 001 003 " + ",820 005 004 000 002 " + ",820 00C 00B 008 008 "
@@ -66,21 +65,14 @@ public class Function {
       String str4 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 "
           + ",820 001 007 000 000 " + ",820 001 008 000 000 " + ",820 000 004 000 000 "
           + ",820 000 008 001 003 " + ",820 005 004 000 002 " + ",820 00C 00B 008 008 "
-          + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
+          + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00004,X,EEFF";
       function.loadParamBySCM(str4);
-      
-      
-      
-      
-      
-      
-      
-      
-      try {
-        Thread.sleep(1000);
-     } catch (InterruptedException e) {
-        e.printStackTrace();
-     }
+
+//      try {
+//        Thread.sleep(1000);
+//     } catch (InterruptedException e) {
+//        e.printStackTrace();
+//     }
       // String str1 = "+YAV:0005AABB" + ",822 000 000 007 001 " + ",920
       // 000 000 007 001 " + ",000
       // 001 007 000 000 "

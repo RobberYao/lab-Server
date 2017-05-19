@@ -10,12 +10,14 @@
      <environments default="development">
          <environment id="development">
              <transactionManager type="JDBC"/>
-             <dataSource type="POOLED">
+             <dataSource type="POOLED" >
                  <property name="driver" value="com.mysql.jdbc.Driver"/>
                  <property name="url" value="jdbc:mysql://localhost:3306/lab?amp;characterEncoding=GBK&amp;allowMultiQueries=true"/>
                  <property name="username" value="root"/>
                  <property name="password" value=""/>
-                <!--  <property name="poolMaximumIdleConnections" value="10"/>-->
+                 <property name="poolMaximumActiveConnections" value="20"/>
+                 <property name="poolMaximumIdleConnections" value="0"/>
+                 
              </dataSource>    
          </environment>
      </environments>
