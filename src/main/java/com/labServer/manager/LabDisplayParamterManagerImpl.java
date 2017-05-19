@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import com.labServer.Util.MyBatisUtil;
 import com.labServer.mapping.LabDisplayParamterMapper;
 import com.labServer.model.LabDisplayParamter;
+import com.labServer.model.LabDisprobeNumber;
+import com.labServer.model.LabModify;
 
 public class LabDisplayParamterManagerImpl implements LabDisplayParamterManager {
 
@@ -51,12 +53,12 @@ public class LabDisplayParamterManagerImpl implements LabDisplayParamterManager 
 	 * @return
 	 */
 	public LabDisplayParamter calParamterByModify(LabDisplayParamter labDisplayParamter,
-			List<Map<String, Double>> modifys) {
+			Map<String, LabModify> modifys) {
 		// 遍历校准 并对温湿进行赋值（暂无光照）
-		for (Map<String, Double> modify : modifys) {
-			labDisplayParamter.setDisTemperature(modify.get("DISTEMPERATURE") + labDisplayParamter.getDisTemperature());
-			labDisplayParamter.setDisHumidity(modify.get("DISHUMIDITY") + labDisplayParamter.getDisHumidity());
-		}
+		String inputNum=labDisplayParamter.getInputProbeNumber();
+			labDisplayParamter.setDisTemperature(modifys.get(inputNum).getModifyTemp() + labDisplayParamter.getDisTemperature());
+			labDisplayParamter.setDisHumidity(modifys.get(inputNum).getModifyHum() + labDisplayParamter.getDisHumidity());
+		
 		return labDisplayParamter;
 
 	}

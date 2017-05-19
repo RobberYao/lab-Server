@@ -17,4 +17,9 @@ public interface LabModifyMapper {
   @Select("select * from lab_modify where INPUTPROBENUMBER =#{inputProbeNumber} and STATUS = 'Y' ")
   List<LabModify> getLabModifyByInputProbNum(String inputProbeNumber);
 
+
+  @Select("select * from lab_modify where STATUS = 'Y' ")
+  List<LabModify> getSumLabModify();
+
+
 }

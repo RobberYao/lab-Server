@@ -17,6 +17,7 @@ import com.labServer.manager.LabModifyManagerImpl;
 import com.labServer.model.LabDisplayParamter;
 import com.labServer.model.LabDisprobeNumber;
 import com.labServer.model.LabInputParamter;
+import com.labServer.model.LabModify;
 
 public class Function {
 
@@ -28,23 +29,58 @@ public class Function {
   private LabModifyManager labModifyManager = new LabModifyManagerImpl();
   List<LabInputParamter> listInputItems = new ArrayList<LabInputParamter>();// 批量原数据集合
   List<LabDisplayParamter> listDisplayItems = new ArrayList<LabDisplayParamter>();// 批量显示数据集合
-  private int itemsSize=4;//批处理量
+  private int itemsSize = 16;// 批处理量
   int w = 1;
+  
+  // 查找配置信息(预加载)
+  Map<String, LabDisprobeNumber> labDisprobeNumber = labDisprobeNumberManager.getSumDisprobeNumber();// 显示数据实例
+  // 查找该探头的校准值(预加载)
+  Map<String, LabModify> modifys = labModifyManager.getSumLabModify();
+  
+  
+  
   
   public static void main(String[] args) {
 
     Function function = new Function();
     for (int i = 0; i < 1000; i++) {
-      String str = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 "
+      String str1 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 "
           + ",820 001 007 000 000 " + ",820 001 008 000 000 " + ",820 000 004 000 000 "
           + ",820 000 008 001 003 " + ",820 005 004 000 002 " + ",820 00C 00B 008 008 "
           + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
-      function.loadParamBySCM(str);
-       try {
-      Thread.sleep(10000);
-      } catch (InterruptedException e) {
-       e.printStackTrace();
-      }
+      function.loadParamBySCM(str1);
+      
+      
+      String str2 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 "
+          + ",820 001 007 000 000 " + ",820 001 008 000 000 " + ",820 000 004 000 000 "
+          + ",820 000 008 001 003 " + ",820 005 004 000 002 " + ",820 00C 00B 008 008 "
+          + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00002,X,EEFF";
+      function.loadParamBySCM(str2);
+      
+      String str3 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 "
+          + ",820 001 007 000 000 " + ",820 001 008 000 000 " + ",820 000 004 000 000 "
+          + ",820 000 008 001 003 " + ",820 005 004 000 002 " + ",820 00C 00B 008 008 "
+          + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00003,X,EEFF";
+      function.loadParamBySCM(str3);
+      
+      String str4 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 "
+          + ",820 001 007 000 000 " + ",820 001 008 000 000 " + ",820 000 004 000 000 "
+          + ",820 000 008 001 003 " + ",820 005 004 000 002 " + ",820 00C 00B 008 008 "
+          + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
+      function.loadParamBySCM(str4);
+      
+      
+      
+      
+      
+      
+      
+      
+      try {
+        Thread.sleep(1000);
+     } catch (InterruptedException e) {
+        e.printStackTrace();
+     }
       // String str1 = "+YAV:0005AABB" + ",822 000 000 007 001 " + ",920
       // 000 000 007 001 " + ",000
       // 001 007 000 000 "
@@ -82,11 +118,15 @@ public class Function {
     String displayProbNum = "";// 探头编号（客户定制）
     String displayTabName = "";// 显示表名
     String inputTabName = "";// 原数据表名
-    LabDisprobeNumber labDisprobeNumber;// 显示数据实例
+    
+
     LabInputParamter labInputParamter;
     LabDisplayParamter labDisplayParamter;
-    List<Map<String, Double>> modifys;
+    
 
+
+    
+    
     try {
       String[] paramterStr = SCMUtil.getArrayFromSCM(RegexUtil.getParams(str));// 将长数据按分号分割成数组
       for (int i = 0; i < paramterStr.length; i++) {
@@ -97,16 +137,12 @@ public class Function {
         temperature = Double.valueOf(paramters[1]);
         humidity = Double.valueOf(paramters[2]);
 
-        // 查找配置信息
-        labDisprobeNumber = labDisprobeNumberManager.getDisprobeNumberByInputProbNum(inputProbNum);
         // 查找原数据表名
-        inputTabName = labDisprobeNumber.getTab_InputName();
+        inputTabName = labDisprobeNumber.get(inputProbNum).getTab_InputName();
         // 查找显示表名
-        displayTabName = labDisprobeNumber.getTab_DisplayName();
+        displayTabName = labDisprobeNumber.get(inputProbNum).getTab_DisplayName();
         // 查找该探头对应的商户自定名
-        displayProbNum = labDisprobeNumber.getDisplayProbeNumber();
-        // 查找该探头的校准值
-        modifys = labModifyManager.getLabModifyByInputProbNum(inputProbNum);
+        displayProbNum = labDisprobeNumber.get(inputProbNum).getDisplayProbeNumber();
 
         if (Double.valueOf(temperature) > tempCheck && Double.valueOf(humidity) > humCheck) {
           // System.out.println(displayTabName + " 优化==== 原始 ：" +
@@ -117,16 +153,13 @@ public class Function {
           // humidity);
 
           // 组装原数据对象
-          labInputParamter =
-              new LabInputParamter(inputProbNum, createdOn, temperature, humidity, inputTabName);
+          labInputParamter = new LabInputParamter(inputProbNum, createdOn, temperature, humidity, inputTabName);
           // 写入原数据分表（为了数据优化只能舍弃原数据的分表批量业务）
           labInputParamterManager.addLabInputParamter(labInputParamter);//
           // 组装显示显示数据对象
-          labDisplayParamter = new LabDisplayParamter(inputProbNum, displayProbNum, createdOn,
-              temperature, humidity, displayTabName);
+          labDisplayParamter = new LabDisplayParamter(inputProbNum, displayProbNum, createdOn, temperature, humidity, displayTabName);
           // AVG for Temperture 10sec
-          labDisplayParamter.setDisTemperature(labInputParamterManager
-              .getAVGInputTemperatureByCreatedOn(labInputParamter, inputTabName));
+          labDisplayParamter.setDisTemperature(labInputParamterManager.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTabName));
           // 校准值计算
           labDisplayParamterManager.calParamterByModify(labDisplayParamter, modifys);
           // 加入原始批量数据
@@ -154,7 +187,6 @@ public class Function {
             System.out.println("=======第" + w + "次批处理耗时： " + Float.toString(seconds2) + " 秒=======");
             w++;
           }
-
         }
       }
 

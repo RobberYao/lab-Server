@@ -1,10 +1,15 @@
 package com.labServer.manager;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.labServer.Util.MyBatisUtil;
 import com.labServer.mapping.LabDisprobeNumberMapper;
 import com.labServer.model.LabDisprobeNumber;
+import com.labServer.model.LabModify;
 
 public class LabDisprobeNumberManagerImpl implements LabDisprobeNumberManager {
 
@@ -21,6 +26,19 @@ public class LabDisprobeNumberManagerImpl implements LabDisprobeNumberManager {
     sqlSession.commit();
     sqlSession.close();
     return labDisprobeNumber;
+  }
+
+  public Map<String, LabDisprobeNumber> getSumDisprobeNumber() {
+    SqlSession sqlSession = MyBatisUtil.getSqlSession();
+    LabDisprobeNumberMapper mapper = sqlSession.getMapper(LabDisprobeNumberMapper.class);
+    List<LabDisprobeNumber> labDisprobeNumbers = mapper.getSumDisprobeNumber();
+    Map<String, LabDisprobeNumber> LabDisprobeNumberMaps = new HashMap<String, LabDisprobeNumber>();
+    sqlSession.commit();
+    sqlSession.close();    
+    for (LabDisprobeNumber labDisprobeNumber : labDisprobeNumbers) {
+      LabDisprobeNumberMaps.put(labDisprobeNumber.getInputProbeNumber(), labDisprobeNumber); 
+    }
+    return LabDisprobeNumberMaps;
   }
 
 }

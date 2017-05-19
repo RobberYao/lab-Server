@@ -10,10 +10,27 @@ public class LabModify {
   private String modifyOn;
   private String createdOn;
   private String stopEnd;
-  private String modifyParamter;
-  private Double modifyNumber;
+  private Double modifyTemp;
+  private Double modifyHum;
   private String Status;
   private String name;
+
+  public Double getModifyTemp() {
+    return modifyTemp;
+  }
+
+  public void setModifyTemp(Double modifyTemp) {
+    this.modifyTemp = modifyTemp;
+  }
+
+
+  public Double getModifyHum() {
+    return modifyHum;
+  }
+
+  public void setModifyHum(Double modifyHum) {
+    this.modifyHum = modifyHum;
+  }
 
   public Integer getId() {
     return id;
@@ -64,21 +81,7 @@ public class LabModify {
     this.stopEnd = stopEnd;
   }
 
-  public String getModifyParamter() {
-    return modifyParamter;
-  }
 
-  public void setModifyParamter(String modifyParamter) {
-    this.modifyParamter = modifyParamter;
-  }
-
-  public Double getModifyNumber() {
-    return modifyNumber;
-  }
-
-  public void setModifyNumber(Double modifyNumber) {
-    this.modifyNumber = modifyNumber;
-  }
 
   public String getStatus() {
     return Status;
@@ -96,13 +99,7 @@ public class LabModify {
     this.name = name;
   }
 
-  @Override
-  public String toString() {
-    return "LabModify [id=" + id + ", inputProbeNumber=" + inputProbeNumber + ", disProbeNumber="
-        + disProbeNumber + ", modifyOn=" + modifyOn + ", createdOn=" + createdOn + ", stopEnd="
-        + stopEnd + ", modifyParamter=" + modifyParamter + ", modifyNumber=" + modifyNumber
-        + ", Status=" + Status + ", name=" + name + "]";
-  }
+
 
 
 
