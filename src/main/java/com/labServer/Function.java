@@ -29,7 +29,7 @@ public class Function {
 	private LabModifyManager labModifyManager = new LabModifyManagerImpl();
 	List<LabInputParamter> listInputItems = new ArrayList<LabInputParamter>();// 批量原数据集合
 	List<LabDisplayParamter> listDisplayItems = new ArrayList<LabDisplayParamter>();// 批量显示数据集合
-	private int itemsSize = 4;// 批处理量
+	private int itemsSize = 16;// 批处理量
 	int w = 1;
 
 	// 查找配置信息(预加载)
@@ -40,7 +40,7 @@ public class Function {
 	public static void main(String[] args) {
 
 		Function function = new Function();
-		for (int i = 0; i < 1000; i++) {
+		while(true) {
 			String str1 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 " + ",820 001 007 000 000 "
 					+ ",820 001 008 000 000 " + ",820 000 004 000 000 " + ",820 000 008 001 003 "
 					+ ",820 005 004 000 002 " + ",820 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
@@ -50,19 +50,19 @@ public class Function {
 			String str2 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 " + ",820 001 007 000 000 "
 					+ ",820 001 008 000 000 " + ",820 000 004 000 000 " + ",820 000 008 001 003 "
 					+ ",820 005 004 000 002 " + ",820 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
-					+ ",FF0203FF,V V V V V V V V" + ",8AD00002,X,EEFF";
+					+ ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
 			function.loadParamBySCM(str2);
 
 			String str3 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 " + ",820 001 007 000 000 "
 					+ ",820 001 008 000 000 " + ",820 000 004 000 000 " + ",820 000 008 001 003 "
 					+ ",820 005 004 000 002 " + ",820 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
-					+ ",FF0203FF,V V V V V V V V" + ",8AD00003,X,EEFF";
+					+ ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
 			function.loadParamBySCM(str3);
 
 			String str4 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 " + ",820 001 007 000 000 "
 					+ ",820 001 008 000 000 " + ",820 000 004 000 000 " + ",820 000 008 001 003 "
 					+ ",820 005 004 000 002 " + ",820 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
-					+ ",FF0203FF,V V V V V V V V" + ",8AD00004,X,EEFF";
+					+ ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
 			function.loadParamBySCM(str4);
 
 			// try {
