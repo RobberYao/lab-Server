@@ -3,6 +3,8 @@ package com.labServer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 import com.labServer.Util.RegexUtil;
 import com.labServer.Util.SCMUtil;
@@ -19,78 +21,55 @@ import com.labServer.model.LabDisprobeNumber;
 import com.labServer.model.LabInputParamter;
 import com.labServer.model.LabModify;
 
-public class Function {
+public class Function implements Runnable {
 
 	private final double tempCheck = -10.00;
 	private final double humCheck = 10.00;
 	private LabDisplayParamterManager labDisplayParamterManager = new LabDisplayParamterManagerImpl();
-	private LabDisprobeNumberManager labDisprobeNumberManager = new LabDisprobeNumberManagerImpl();
+	private static LabDisprobeNumberManager labDisprobeNumberManager = new LabDisprobeNumberManagerImpl();
+	private static Map<String, LabDisprobeNumber> labDisprobeNumber = labDisprobeNumberManager.getSumDisprobeNumber();// 显示数据实例
 	private LabInputParamterManager labInputParamterManager = new LabInputParamterManagerImpl();
 	private LabModifyManager labModifyManager = new LabModifyManagerImpl();
+	private String str;
+	
+	BlockingQueue<List<LabInputParamter>> queuelistInputItems = new ArrayBlockingQueue(2);
+	BlockingQueue<List<LabDisplayParamter>> queuelistDisplayItems = new ArrayBlockingQueue(2);
+	
 	List<LabInputParamter> listInputItems = new ArrayList<LabInputParamter>();// 批量原数据集合
 	List<LabDisplayParamter> listDisplayItems = new ArrayList<LabDisplayParamter>();// 批量显示数据集合
-	private int itemsSize = 16;// 批处理量
-	int w = 1;
-
 	// 查找配置信息(预加载)
-	Map<String, LabDisprobeNumber> labDisprobeNumber = labDisprobeNumberManager.getSumDisprobeNumber();// 显示数据实例
 	// 查找该探头的校准值(预加载)
 	Map<String, LabModify> modifys = labModifyManager.getSumLabModify();
 
-	public static void main(String[] args) {
+	private int itemsSize = 16;// 批处理量
+	int w = 1;
 
-		Function function = new Function();
+	public static void main(String[] args) {
+		//Function function = new Function();
 		while(true) {
 			String str1 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 " + ",820 001 007 000 000 "
 					+ ",820 001 008 000 000 " + ",820 000 004 000 000 " + ",820 000 008 001 003 "
 					+ ",820 005 004 000 002 " + ",820 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
 					+ ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
-			function.loadParamBySCM(str1);
+			//function.loadParamBySCM(str1,listInputItems,listDisplayItems);
 
-			String str2 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 " + ",820 001 007 000 000 "
-					+ ",820 001 008 000 000 " + ",820 000 004 000 000 " + ",820 000 008 001 003 "
-					+ ",820 005 004 000 002 " + ",820 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
-					+ ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
-			function.loadParamBySCM(str2);
-
-			String str3 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 " + ",820 001 007 000 000 "
-					+ ",820 001 008 000 000 " + ",820 000 004 000 000 " + ",820 000 008 001 003 "
-					+ ",820 005 004 000 002 " + ",820 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
-					+ ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
-			function.loadParamBySCM(str3);
-
-			String str4 = "+YAV:0005AABB" + ",820 000 000 007 001 " + ",820 000 000 007 001 " + ",820 001 007 000 000 "
-					+ ",820 001 008 000 000 " + ",820 000 004 000 000 " + ",820 000 008 001 003 "
-					+ ",820 005 004 000 002 " + ",820 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00"
-					+ ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
-			function.loadParamBySCM(str4);
-
-			// try {
-			// Thread.sleep(1000);
-			// } catch (InterruptedException e) {
-			// e.printStackTrace();
-			// }
-			// String str1 = "+YAV:0005AABB" + ",822 000 000 007 001 " + ",920
-			// 000 000 007 001 " + ",000
-			// 001 007 000 000 "
-			// + ",000 001 008 000 000 " + ",000 000 004 000 000 " + ",000 000
-			// 008 001 003 "
-			// + ",000 005 004 000 002 " + ",000 00C 00B 008 008 " + ",0 0,0 0,0
-			// 0 0 0,00"
-			// + ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
-			// function.loadParamBySCM(str1);
-			// String str2 = "+YAV:0005AABB" + ",821 000 000 007 001 " + ",990
-			// 000 000 007 001 " + ",000
-			// 001 007 000 000 "
-			// + ",000 001 008 000 000 " + ",000 000 004 000 000 " + ",000 000
-			// 008 001 003 "
-			// + ",000 005 004 000 002 " + ",000 00C 00B 008 008 " + ",0 0,0 0,0
-			// 0 0 0,00"
-			// + ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
-			// function.loadParamBySCM(str2);
 		}
 
 	}
+
+	public Function(BlockingQueue<List<LabInputParamter>> queuelistInputItems, BlockingQueue<List<LabDisplayParamter>> queuelistDisplayItems) {
+		try {
+			this.listInputItems = queuelistInputItems.take();
+			this.listDisplayItems = queuelistDisplayItems.take();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void run() {
+		loadParamBySCM(str);
+	}
+
 
 	/**
 	 * 传入未解析数据，解析后存数据库（单片机用）
@@ -129,13 +108,6 @@ public class Function {
 				displayProbNum = labDisprobeNumber.get(inputProbNum).getDisplayProbeNumber();
 
 				if (Double.valueOf(temperature) > tempCheck && Double.valueOf(humidity) > humCheck) {
-					// System.out.println(displayTabName + " 优化==== 原始 ：" +
-					// temperature + " ==> 显示：" +
-					// displayTemprature);
-					// System.out.println("\n" + inputProbNum + " " + createdOn
-					// + " " + temperature + " " +
-					// humidity);
-
 					// 组装原数据对象
 					labInputParamter = new LabInputParamter(inputProbNum, createdOn, temperature, humidity,
 							inputTabName);
@@ -153,10 +125,10 @@ public class Function {
 					listInputItems.add(labInputParamter);
 					// 加入显示批量数据
 					listDisplayItems.add(labDisplayParamter);
-
+					
 					long checkendTime = System.currentTimeMillis();// 计时结束
 					float seconds = (checkendTime - checkstartTime) / 1000F;// 计算耗时
-					System.out.println("第" + w + "批数据解析耗时： " + Float.toString(seconds) + " 秒");
+					//System.out.println("第" + w + "批数据解析耗时： " + Float.toString(seconds) + " 秒");
 					if (listDisplayItems.size() >= itemsSize) {
 						// System.out.println("inputSize :" +
 						// listInputItems.size());
@@ -176,6 +148,12 @@ public class Function {
 						System.out.println("=======第" + w + "次批处理耗时： " + Float.toString(seconds2) + " 秒=======");
 						w++;
 
+					}else{
+						//小于则存入队列继续使用
+						queuelistInputItems.add(listInputItems);
+						queuelistDisplayItems.add(listDisplayItems);
+						System.out.println("原始队列大小    ："+queuelistInputItems.size()+"   原始数据容量  ："+listInputItems.size());
+						System.out.println("显示队列大小    ："+queuelistDisplayItems.size()+"   原始数据容量  ："+listDisplayItems.size());						
 					}
 				}
 			}
@@ -184,4 +162,16 @@ public class Function {
 			System.out.println("异常原因： " + e);
 		}
 	}
+
+	
+
+
+
+
+
+
+
+
+
+	
 }
