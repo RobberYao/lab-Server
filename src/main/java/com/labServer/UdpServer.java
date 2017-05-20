@@ -17,8 +17,8 @@ public class UdpServer {
 	public static void main(String[] args) throws IOException {
 		List<LabInputParamter> listInputItems = new ArrayList<LabInputParamter>();// 批量原数据集合
 		List<LabDisplayParamter> listDisplayItems = new ArrayList<LabDisplayParamter>();// 批量显示数据集合
-		BlockingQueue<List<LabInputParamter>> queuelistInputItems = new ArrayBlockingQueue(100);
-		BlockingQueue<List<LabDisplayParamter>> queuelistDisplayItems = new ArrayBlockingQueue(100);
+		BlockingQueue<List<LabInputParamter>> queuelistInputItems = new ArrayBlockingQueue(10);
+		BlockingQueue<List<LabDisplayParamter>> queuelistDisplayItems = new ArrayBlockingQueue(10);
 		
 		
 		DatagramSocket socket = new DatagramSocket(808);//端口号9080、IP地址默认为本地127.0.0.1

@@ -38,25 +38,24 @@ public class UdpServerThread implements Runnable {
 	DatagramPacket packet = null;
 	private final double tempCheck = -10.00;
 	private final double humCheck = 10.00;
-	private int itemsSize = 4;// 批处理量
+	private int itemsSize = 8;// 批处理量
 	int w = 1;
 	BlockingQueue<List<LabInputParamter>> queuelistInputItems = new ArrayBlockingQueue(2);
 	BlockingQueue<List<LabDisplayParamter>> queuelistDisplayItems = new ArrayBlockingQueue(2);
 
-	List<LabInputParamter> listInputItems =null;// 批量原数据集合
-	List<LabDisplayParamter> listDisplayItems =null;// 批量显示数据集合
+	List<LabInputParamter> listInputItems = null;// 批量原数据集合
+	List<LabDisplayParamter> listDisplayItems = null;// 批量显示数据集合
 
 	public UdpServerThread(DatagramSocket socket, DatagramPacket packet,
 			BlockingQueue<List<LabInputParamter>> queuelistInputItems,
-			BlockingQueue<List<LabDisplayParamter>> queuelistDisplayItems, 
-			List<LabInputParamter> listInputItems,
+			BlockingQueue<List<LabDisplayParamter>> queuelistDisplayItems, List<LabInputParamter> listInputItems,
 			List<LabDisplayParamter> listDisplayItems) {
 		this.socket = socket;
 		this.packet = packet;
 		this.queuelistInputItems = queuelistInputItems;
 		this.queuelistDisplayItems = queuelistDisplayItems;
-		this.listInputItems= listInputItems;
-		this.listDisplayItems=listDisplayItems;
+		this.listInputItems = listInputItems;
+		this.listDisplayItems = listDisplayItems;
 
 	}
 
@@ -134,35 +133,35 @@ public class UdpServerThread implements Runnable {
 					listInputItems.add(labInputParamter);
 					// 加入显示批量数据
 					listDisplayItems.add(labDisplayParamter);
-					System.out.println(
-							"原始队列大小    ：" + queuelistInputItems.size() + "   原始数据容量  ：" + listInputItems.size());
-					System.out.println(
-							"显示队列大小    ：" + queuelistDisplayItems.size() + "   原始数据容量  ：" + listDisplayItems.size());
+					System.out.println("   原始数据容器内容  ：" + listInputItems.size() + " 条" + "   显示数据容量内容  ："
+							+ listDisplayItems.size() + " 条");
+
 					long checkendTime = System.currentTimeMillis();// 计时结束
 					float seconds = (checkendTime - checkstartTime) / 1000F;// 计算耗时
-					System.out.println("第" + w + "批数据解析耗时： " + Float.toString(seconds) + " 秒");
-					//System.out.println("queusSize ==" + queuelistInputItems.take().size());
+					System.out.println("解析耗时： " + Float.toString(seconds) + " 秒");
+					// System.out.println("queusSize ==" +
+					// queuelistInputItems.take().size());
 					if (listInputItems.size() >= itemsSize) {
-						System.out.println("inputSize :" + listInputItems.size());
-						System.out.println("DisSize ：" + listDisplayItems.size());
+						System.out.println("开始批处理...");
 						long checkstartTime2 = System.currentTimeMillis();// 批处理开始计时
 						// 写入显示数据表
-						labDisplayParamterManager.addListItemsToDiffDisplay(listDisplayItems );
+						labDisplayParamterManager.addListItemsToDiffDisplay(listDisplayItems);
 						// 写入原始数据汇总表
-						labInputParamterManager.addListItemsToSumInput(listInputItems );
+						labInputParamterManager.addListItemsToSumInput(listInputItems);
 						// 写入显示数据汇总表
-						labDisplayParamterManager.addListItemsToSumDisplay(listDisplayItems );
+						labDisplayParamterManager.addListItemsToSumDisplay(listDisplayItems);
 						listDisplayItems.clear();
 						listInputItems.clear();
 						long checkendTime2 = System.currentTimeMillis();// 计时结束
 						float seconds2 = (checkendTime2 - checkstartTime2) / 1000F;// 计算耗时
-						System.out.println("=======" +createdOn + "  批处理耗时： " + Float.toString(seconds2) + " 秒=======");
+						System.out
+								.println("=======" + createdOn + "  批处理耗时： " + Float.toString(seconds2) + " 秒=======");
 						w++;
 
 					} else {
 						// 小于则存入队列继续使用
-//						queuelistInputItems.take().add(labInputParamter);
-//						queuelistDisplayItems.take().add(labDisplayParamter);
+						// queuelistInputItems.take().add(labInputParamter);
+						// queuelistDisplayItems.take().add(labDisplayParamter);
 						// queuelistInputItems.add(listInputItems);
 						// queuelistDisplayItems.add(listDisplayItems);
 						// System.out.println(
