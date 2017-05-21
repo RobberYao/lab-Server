@@ -82,7 +82,7 @@ public class LabDisplayParamterManagerImpl implements LabDisplayParamterManager 
 	 * 
 	 * 
 	 */
-	public void addListItemsToDiffDisplay(@Param("list")List <LabDisplayParamter> list) {
+	public void addListItemsToDiffDisplay(@Param("list") List<LabDisplayParamter> list) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
 		String statement = "com.labServer.mapping.LabDisplayParamterMapper.addListItemsToDiffDisplay";
 		sqlSession.insert(statement, list);

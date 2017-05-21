@@ -10,18 +10,16 @@ import com.labServer.model.LabModify;
 
 public interface LabDisplayParamterManager {
 
-  // void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
-  // List<Map<String, Double>> modify);
-  //
-  // void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
-  // List<Map<String, Double>> modifys, String displayTable);
+	// void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
+	// List<Map<String, Double>> modify);
+	//
+	// void addLabDiaplayParamter(LabDisplayParamter labDisplayParamter,
+	// List<Map<String, Double>> modifys, String displayTable);
 
-  void addListItemsToSumDisplay(@Param("list") List<LabDisplayParamter> list);
+	void addListItemsToSumDisplay(@Param("list") List<LabDisplayParamter> list);
 
-  void addListItemsToDiffDisplay(@Param("list") List<LabDisplayParamter> list);
+	void addListItemsToDiffDisplay(@Param("list") List<LabDisplayParamter> list);
 
-  LabDisplayParamter calParamterByModify(LabDisplayParamter labDisplayParamter, Map<String, LabModify> modifys);
-
-
+	LabDisplayParamter calParamterByModify(LabDisplayParamter labDisplayParamter, Map<String, LabModify> modifys);
 
 }

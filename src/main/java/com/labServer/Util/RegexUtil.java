@@ -1,4 +1,5 @@
 package com.labServer.Util;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -12,9 +13,7 @@ public class RegexUtil {
 	public static void main(String[] args) {
 
 		System.out.println("Start");
-		String str = "+YAV:0005AABB" + ",000 000 000 007 001 " + ",000 000 000 007 001 " + ",007 001 007 000 000 "
-				+ ",009 001 008 000 000 " + ",000 000 004 000 000 " + ",004 000 008 001 003 " + ",001 005 004 000 002 "
-				+ ",008 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
+		String str = "+YAV:0005AABB" + ",000 000 000 007 001 " + ",000 000 000 007 001 " + ",007 001 007 000 000 " + ",009 001 008 000 000 " + ",000 000 004 000 000 " + ",004 000 008 001 003 " + ",001 005 004 000 002 " + ",008 00C 00B 008 008 " + ",0 0,0 0,0 0 0 0,00" + ",FF0203FF,V V V V V V V V" + ",8AD00001,X,EEFF";
 
 		// int[] o = getParams(str);
 
@@ -51,32 +50,32 @@ public class RegexUtil {
 		Matcher m = r.matcher(str);
 		int index = 0;
 		// #01:proberNum�� T��temp�� H��Hum
-		String[] probeNum = { "01", "02","03","04" };
+		String[] probeNum = { "01", "02", "03", "04" };
 		String boardNumber = getBoardNumber(str);
-		StringBuffer paramStr  = new StringBuffer();
+		StringBuffer paramStr = new StringBuffer();
 		while (m.find()) {
 			if (index == 0) {
-				paramStr.append(boardNumber+probeNum[0]+":"+getTemperatureByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))));
-			} else if (index == 1 ) {
-				paramStr.append(":"+getHumidityByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4))))+";");
-			} else if (index == 2 ) {
-				paramStr.append(boardNumber+probeNum[1]+":"+getTemperatureByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))));
-			} else if (index == 3 ) {
-				paramStr.append(":"+getHumidityByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4))))+";");
-			}else if (index == 4 ) {
-				paramStr.append(boardNumber+probeNum[2]+":"+getTemperatureByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))));
-			}else if (index == 5) {
-				paramStr.append(":"+getHumidityByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4))))+";");
-			}else if (index == 6 ) {
-				paramStr.append(boardNumber+probeNum[3]+":"+getTemperatureByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))));
-			}else if (index == 7 ) {
-				paramStr.append(":"+getHumidityByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4))))+";");
+				paramStr.append(boardNumber + probeNum[0] + ":" + getTemperatureByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))));
+			} else if (index == 1) {
+				paramStr.append(":" + getHumidityByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))) + ";");
+			} else if (index == 2) {
+				paramStr.append(boardNumber + probeNum[1] + ":" + getTemperatureByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))));
+			} else if (index == 3) {
+				paramStr.append(":" + getHumidityByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))) + ";");
+			} else if (index == 4) {
+				paramStr.append(boardNumber + probeNum[2] + ":" + getTemperatureByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))));
+			} else if (index == 5) {
+				paramStr.append(":" + getHumidityByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))) + ";");
+			} else if (index == 6) {
+				paramStr.append(boardNumber + probeNum[3] + ":" + getTemperatureByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))));
+			} else if (index == 7) {
+				paramStr.append(":" + getHumidityByVol(getVoltagesParam(hex2Decimal(m.group().substring(1, 4)))) + ";");
 			}
 			index++;
 		}
 		return paramStr.toString();
 	}
-		
+
 	/**
 	 * Through the regular expression to parse BoardNumber
 	 * 
@@ -150,6 +149,5 @@ public class RegexUtil {
 		BigDecimal b = new BigDecimal(20);
 		BigDecimal x = new BigDecimal(Double.toString(param));
 		return x.multiply(k).subtract(b).doubleValue();
-
 	}
 }

@@ -86,6 +86,5 @@ public class LabInputParamterManagerImpl implements LabInputParamterManager {
 		// System.out.println("==============================平均avg : null");
 		return temperature;
 	}
-	
-	
+
 }

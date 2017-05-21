@@ -3,18 +3,37 @@
 <mapper namespace="com.labServer.mapping.LabDisplayParamterMapper">
 
 	<!-- 批量插入数据（固定表名 显示数据汇总表） -->
-	<insert id="addListItemsToSumDisplay" parameterType="com.labServer.model.LabDisplayParamter">
-		insert into lab_displayparamter (INPUTPROBENUMBER,DISPROBENUMBER,CREATEDON,DISTEMPERATURE,DISHUMIDITY) VALUES
-		<foreach collection="list" item="item" index="index" separator=",">
+	<insert
+		id="addListItemsToSumDisplay"
+		parameterType="com.labServer.model.LabDisplayParamter">
+		insert into lab_displayparamter
+		(INPUTPROBENUMBER,DISPROBENUMBER,CREATEDON,DISTEMPERATURE,DISHUMIDITY)
+		VALUES
+		<foreach
+			collection="list"
+			item="item"
+			index="index"
+			separator=",">
 			(#{item.inputProbeNumber},#{item.disProbeNumber},#{item.createdOn},#{item.disTemperature},#{item.disHumidity})
 		</foreach>
 	</insert>
 
 	<!-- 批量插入显示数据（动态表名 ） -->
-	<insert id="addListItemsToDiffDisplay" parameterType="com.labServer.model.LabDisplayParamter" statementType="STATEMENT" >
-		<foreach collection="list" item="item" index="index" separator=";">
-			insert into ${item.displayTableName} (INPUTPROBENUMBER,DISPROBENUMBER,CREATEDON,DISTEMPERATURE,DISHUMIDITY) VALUES
-			( '${item.inputProbeNumber}', '${item.disProbeNumber}','${item.createdOn}',${item.disTemperature},${item.disHumidity})
+	<insert
+		id="addListItemsToDiffDisplay"
+		parameterType="com.labServer.model.LabDisplayParamter"
+		statementType="STATEMENT">
+		<foreach
+			collection="list"
+			item="item"
+			index="index"
+			separator=";">
+			insert into ${item.displayTableName}
+			(INPUTPROBENUMBER,DISPROBENUMBER,CREATEDON,DISTEMPERATURE,DISHUMIDITY)
+			VALUES
+			(
+			'${item.inputProbeNumber}',
+			'${item.disProbeNumber}','${item.createdOn}',${item.disTemperature},${item.disHumidity})
 		</foreach>
 	</insert>
 </mapper>

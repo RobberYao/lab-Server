@@ -1,9 +1,6 @@
 package com.labServer.Util;
 
-
 import java.math.BigDecimal;
-
-
 
 public class DoubleUtil {
 	// Ĭ�ϳ����㾫�ȣ�С����2λ
@@ -13,9 +10,7 @@ public class DoubleUtil {
 
 		Double x = 1.0;
 		Double y = 3.0;
-
 		System.out.println(getDoubleToStringValueByBigDecimalDiv(x, y));
-
 		System.out.println(x + y);
 
 	}
@@ -28,10 +23,8 @@ public class DoubleUtil {
 	 * @return x+y
 	 */
 	public static String getDoubleValueByBigDecimalAdd(Double x, Double y) {
-
 		BigDecimal x1 = new BigDecimal(Double.toString(x));
 		BigDecimal y1 = new BigDecimal(Double.toString(y));
-
 		return x1.add(y1).toString();
 	}
 
@@ -43,10 +36,8 @@ public class DoubleUtil {
 	 * @return x-y
 	 */
 	public static String getDoubleToStringValueByBigDecimalSub(Double x, Double y) {
-
 		BigDecimal x1 = new BigDecimal(Double.toString(x));
 		BigDecimal y1 = new BigDecimal(Double.toString(y));
-
 		return x1.subtract(y1).toString();
 
 	}
@@ -59,25 +50,18 @@ public class DoubleUtil {
 	 * @return x*y
 	 */
 	public static String getDoubleToStringValueByBigDecimalMul(Double x, Double y) {
-
 		BigDecimal x1 = new BigDecimal(Double.toString(x));
 		BigDecimal y1 = new BigDecimal(Double.toString(y));
-
 		return x1.multiply(y1).toString();
 
 	}
 
-	public static String getDoubleToStringValueByBigDecimalDiv(Double x, Double y){
-		
+	public static String getDoubleToStringValueByBigDecimalDiv(Double x, Double y) {
 		BigDecimal x1 = new BigDecimal(Double.toString(x));
 		BigDecimal y1 = new BigDecimal(Double.toString(y));
 		System.out.println(x1.divide(y1));
-		
-		return x1.divide(y1,2,BigDecimal.ROUND_HALF_DOWN).toString();
-		
+		return x1.divide(y1, 2, BigDecimal.ROUND_HALF_DOWN).toString();
+
 	}
-	
-	
-	
-	
+
 }

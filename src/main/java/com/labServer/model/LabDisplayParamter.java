@@ -70,13 +70,10 @@ public class LabDisplayParamter {
 
 	@Override
 	public String toString() {
-		return "LabDisplayParamter [inputProbeNumber=" + inputProbeNumber + ", disProbeNumber=" + disProbeNumber
-				+ ", createdOn=" + createdOn + ", disTemperature=" + disTemperature + ", disHumidity=" + disHumidity
-				+ "]";
+		return "LabDisplayParamter [inputProbeNumber=" + inputProbeNumber + ", disProbeNumber=" + disProbeNumber + ", createdOn=" + createdOn + ", disTemperature=" + disTemperature + ", disHumidity=" + disHumidity + "]";
 	}
 
-	public LabDisplayParamter(String inputProbeNumber, String disProbeNumber, String createdOn, Double disTemperature,
-			Double disHumidity) {
+	public LabDisplayParamter(String inputProbeNumber, String disProbeNumber, String createdOn, Double disTemperature, Double disHumidity) {
 		super();
 		this.inputProbeNumber = inputProbeNumber;
 		this.disProbeNumber = disProbeNumber;
@@ -85,10 +82,7 @@ public class LabDisplayParamter {
 		this.disHumidity = disHumidity;
 	}
 
-	
-	
-	public LabDisplayParamter(String inputProbeNumber, String disProbeNumber, String createdOn, Double disTemperature,
-			Double disHumidity, String displayTableName) {
+	public LabDisplayParamter(String inputProbeNumber, String disProbeNumber, String createdOn, Double disTemperature, Double disHumidity, String displayTableName) {
 		super();
 		this.inputProbeNumber = inputProbeNumber;
 		this.disProbeNumber = disProbeNumber;

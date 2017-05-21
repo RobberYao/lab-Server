@@ -7,7 +7,7 @@ import com.labServer.model.LabDisprobeNumber;
 
 public interface LabDisprobeNumberManager {
 
-  LabDisprobeNumber getDisprobeNumberByInputProbNum(String inputProbeNumber);
+	LabDisprobeNumber getDisprobeNumberByInputProbNum(String inputProbeNumber);
 
-  Map<String, LabDisprobeNumber> getSumDisprobeNumber();
+	Map<String, LabDisprobeNumber> getSumDisprobeNumber();
 }
