@@ -1,4 +1,4 @@
-package com.labServer.Util;
+package com.labServer.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

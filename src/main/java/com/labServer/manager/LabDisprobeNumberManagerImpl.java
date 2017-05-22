@@ -6,10 +6,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.labServer.Util.MyBatisUtil;
 import com.labServer.mapping.LabDisprobeNumberMapper;
 import com.labServer.model.LabDisprobeNumber;
 import com.labServer.model.LabModify;
+import com.labServer.util.MyBatisUtil;
 
 public class LabDisprobeNumberManagerImpl implements LabDisprobeNumberManager {
 

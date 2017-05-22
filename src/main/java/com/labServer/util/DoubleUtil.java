@@ -1,4 +1,4 @@
-package com.labServer.Util;
+package com.labServer.util;
 
 import java.math.BigDecimal;
 

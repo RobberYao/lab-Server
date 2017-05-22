@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
-import com.labServer.Util.MyBatisUtil;
 import com.labServer.mapping.LabInputParamterMapper;
 import com.labServer.model.LabInputParamter;
+import com.labServer.util.MyBatisUtil;
 
 public class LabInputParamterManagerImpl implements LabInputParamterManager {
 

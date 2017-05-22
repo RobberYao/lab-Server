@@ -6,11 +6,11 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
-import com.labServer.Util.MyBatisUtil;
 import com.labServer.mapping.LabDisplayParamterMapper;
 import com.labServer.model.LabDisplayParamter;
 import com.labServer.model.LabDisprobeNumber;
 import com.labServer.model.LabModify;
+import com.labServer.util.MyBatisUtil;
 
 public class LabDisplayParamterManagerImpl implements LabDisplayParamterManager {
 
