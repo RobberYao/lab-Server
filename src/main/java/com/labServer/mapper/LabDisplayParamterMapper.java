@@ -1,4 +1,4 @@
-package com.labServer.mapping;
+package com.labServer.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;

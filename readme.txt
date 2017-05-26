@@ -28,7 +28,7 @@ src
     │           │	├──	LabModifyManager.java			#探头校准配置管理方法
     │           │	└──	LabModifyManagerImpl.java		#探头校准配置管理方法实现类
     │           │	
-    │ 	      	 ├── mapping								#解析接口映射层
+    │ 	      	 ├── mapper							#解析接口映射层
     │ 	      	 │	├──  LabDisplayParamterMapper.java		#显示数据表接口映射类（暂弃用）
     │ 	      	 │	├──	LabDisprobeNumberMapper.java		#探头映射表接口映射类
     │ 	      	 │	├──	LabInputParamterMapper.java		#原始数据表接口映射类

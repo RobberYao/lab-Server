@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.labServer.mapping.LabDisprobeNumberMapper;
+import com.labServer.mapper.LabDisprobeNumberMapper;
 import com.labServer.model.LabDisprobeNumber;
 import com.labServer.model.LabModify;
 import com.labServer.util.MyBatisUtil;

@@ -1,4 +1,4 @@
-package com.labServer.mapping;
+package com.labServer.mapper;
 
 import java.util.List;
 
