@@ -36,8 +36,8 @@ public class UdpServerThread implements Runnable {
 	Map<String, LabModify> modifys = labModifyManager.getSumLabModify();
 	DatagramSocket socket = null;
 	DatagramPacket packet = null;
-	private final double tempCheck = -10.00;
-	private final double humCheck = 10.00;
+	private final double tempCheck = 25.00;//设置25摄氏度为最低采集温度
+	private final double humCheck = 20.00;//设置20度为最低采集湿度
 	private int itemsSize = 8;// 批处理量
 
 	List<LabInputParamter> listInputItems = null;// 批量原数据集合
