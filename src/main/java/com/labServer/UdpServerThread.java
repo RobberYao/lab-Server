@@ -86,10 +86,6 @@ public class UdpServerThread implements Runnable {
 		modifys = labModifyManager.getSumLabModify();
 	}
 
-	private boolean checkTimes(){
-		
-		return true;
-	}
 	/**
 	 * 传入未解析数据，解析后存数据库（单片机用）
 	 * 
