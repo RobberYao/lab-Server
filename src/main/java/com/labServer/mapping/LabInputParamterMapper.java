@@ -1,4 +1,4 @@
-package com.labServer.mapper;
+package com.labServer.mapping;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -16,7 +16,7 @@ public interface LabInputParamterMapper {
 
 	// String sql = "select AVG(INPUTTEMPERATURE) from " + inputProbNum + "
 	// where DATE_SUB('" + createdOn+ "',INTERVAL 10 SECOND ) < CREATEDON";
-	@Select("select AVG(INPUTTEMPERATURE) from ${inputTable} where DATE_SUB(#{labInputParamter.createdOn}, INTERVAL 10 SECOND )< #{labInputParamter.createdOn}")
+	@Select("select AVG(INPUTTEMPERATURE) from ${inputTable} where createdOn >  DATE_SUB(#{labInputParamter.createdOn}, INTERVAL 5 SECOND )")
 	public Double findAVGInputTemperature(@Param("labInputParamter") LabInputParamter labInputParamter, @Param("inputTable") String inputTable);
 
 }

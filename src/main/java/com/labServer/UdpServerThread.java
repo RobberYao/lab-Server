@@ -36,14 +36,16 @@ public class UdpServerThread implements Runnable {
 	Map<String, LabModify> modifys = labModifyManager.getSumLabModify();
 	DatagramSocket socket = null;
 	DatagramPacket packet = null;
-	private final double tempCheck = 25.00;//设置25摄氏度为最低采集温度
-	private final double humCheck = 20.00;//设置20度为最低采集湿度
+	private final double tempCheck = 25.00;// 设置25摄氏度为最低采集温度
+	private final double humCheck = 20.00;// 设置20度为最低采集湿度
 	private int itemsSize = 8;// 批处理量
+	private static int resetInit = 0;// 定时刷新预加载信息
 
 	List<LabInputParamter> listInputItems = null;// 批量原数据集合
 	List<LabDisplayParamter> listDisplayItems = null;// 批量显示数据集合
 
-	public UdpServerThread(DatagramSocket socket, DatagramPacket packet, List<LabInputParamter> listInputItems, List<LabDisplayParamter> listDisplayItems) {
+	public UdpServerThread(DatagramSocket socket, DatagramPacket packet, List<LabInputParamter> listInputItems,
+			List<LabDisplayParamter> listDisplayItems) {
 		this.socket = socket;
 		this.packet = packet;
 		this.listInputItems = listInputItems;
@@ -69,8 +71,25 @@ public class UdpServerThread implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		resetInit++;
+		if (resetInit > 10) {
+			init();
+		}
 	}
 
+	/**
+	 * 初始化预加载信息
+	 */
+	private void init() {
+		resetInit = 0;
+		labDisprobeNumber = labDisprobeNumberManager.getSumDisprobeNumber();// 显示数据实例
+		modifys = labModifyManager.getSumLabModify();
+	}
+
+	private boolean checkTimes(){
+		
+		return true;
+	}
 	/**
 	 * 传入未解析数据，解析后存数据库（单片机用）
 	 * 
@@ -109,20 +128,24 @@ public class UdpServerThread implements Runnable {
 
 				if (Double.valueOf(temperature) > tempCheck && Double.valueOf(humidity) > humCheck) {
 					// 组装原数据对象
-					labInputParamter = new LabInputParamter(inputProbNum, createdOn, temperature, humidity, inputTabName);
+					labInputParamter = new LabInputParamter(inputProbNum, createdOn, temperature, humidity,
+							inputTabName);
 					// 写入原数据分表（为了数据优化只能舍弃原数据的分表批量业务）
 					labInputParamterManager.addLabInputParamter(labInputParamter);//
 					// 组装显示显示数据对象
-					labDisplayParamter = new LabDisplayParamter(inputProbNum, displayProbNum, createdOn, temperature, humidity, displayTabName);
+					labDisplayParamter = new LabDisplayParamter(inputProbNum, displayProbNum, createdOn, temperature,
+							humidity, displayTabName);
 					// AVG for Temperture 10sec
-					labDisplayParamter.setDisTemperature(labInputParamterManager.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTabName));
+					labDisplayParamter.setDisTemperature(
+							labInputParamterManager.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTabName));
 					// 校准值计算
 					labDisplayParamterManager.calParamterByModify(labDisplayParamter, modifys);
 					// 加入原始批量数据
 					listInputItems.add(labInputParamter);
 					// 加入显示批量数据
 					listDisplayItems.add(labDisplayParamter);
-					System.out.println("原始数据容器内容  ：" + listInputItems.size() + "条" + " ,显示数据容量内容  ：" + listDisplayItems.size() + "条");
+					System.out.println("原始数据容器内容  ：" + listInputItems.size() + "条" + " ,显示数据容量内容  ："
+							+ listDisplayItems.size() + "条");
 					long checkendTime = System.currentTimeMillis();// 计时结束
 					float seconds = (checkendTime - checkstartTime) / 1000F;// 计算耗时
 					System.out.println("解析耗时： " + Float.toString(seconds) + " 秒");

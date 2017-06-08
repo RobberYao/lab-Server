@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.labServer.mapper.LabModifyMapper;
+import com.labServer.mapping.LabModifyMapper;
 import com.labServer.model.LabModify;
 import com.labServer.util.MyBatisUtil;
 

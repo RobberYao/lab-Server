@@ -16,7 +16,7 @@ import com.labServer.manager.LabInputParamterManager;
 import com.labServer.manager.LabInputParamterManagerImpl;
 import com.labServer.manager.LabModifyManager;
 import com.labServer.manager.LabModifyManagerImpl;
-import com.labServer.mapper.LabModifyMapper;
+import com.labServer.mapping.LabModifyMapper;
 import com.labServer.model.LabDisplayParamter;
 import com.labServer.model.LabDisprobeNumber;
 import com.labServer.model.LabInputParamter;
