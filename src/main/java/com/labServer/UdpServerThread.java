@@ -29,7 +29,7 @@ public class UdpServerThread implements Runnable {
 	private LabDisplayParamterManager labDisplayParamterManager = new LabDisplayParamterManagerImpl();
 	private LabInputParamterManager labInputParamterManager = new LabInputParamterManagerImpl();
 	private LabModifyManager labModifyManager = new LabModifyManagerImpl();
-	// 查找配置信息(预加载)
+	// 查找配置信息(预加载).
 	private static LabDisprobeNumberManager labDisprobeNumberManager = new LabDisprobeNumberManagerImpl();
 	private static Map<String, LabDisprobeNumber> labDisprobeNumber = labDisprobeNumberManager.getSumDisprobeNumber();// 显示数据实例
 	// 查找该探头的校准值(预加载)
