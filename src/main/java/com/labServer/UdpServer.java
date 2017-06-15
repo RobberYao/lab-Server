@@ -17,7 +17,6 @@ public class UdpServer {
 	public static void main(String[] args) throws IOException {
 		List<LabInputParamter> listInputItems = new ArrayList<LabInputParamter>();// 批量原数据集合
 		List<LabDisplayParamter> listDisplayItems = new ArrayList<LabDisplayParamter>();// 批量显示数据集合
-
 		DatagramSocket socket = new DatagramSocket(808);// 端口号9080、IP地址默认为本地127.0.0.1
 		DatagramPacket packet = null;
 		byte[] data = null;

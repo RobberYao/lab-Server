@@ -36,8 +36,8 @@ public class UdpServerThread implements Runnable {
 	Map<String, LabModify> modifys = labModifyManager.getSumLabModify();
 	DatagramSocket socket = null;
 	DatagramPacket packet = null;
-	private final double tempCheck = 25.00;// 设置25摄氏度为最低采集温度
-	private final double humCheck = 20.00;// 设置20度为最低采集湿度
+	private final double tempCheck = -25.00;// 设置25摄氏度为最低采集温度
+	private final double humCheck = -20.00;// 设置20度为最低采集湿度
 	private int itemsSize = 8;// 批处理量
 	private static int resetInit = 0;// 定时刷新预加载信息
 
@@ -72,7 +72,7 @@ public class UdpServerThread implements Runnable {
 			e.printStackTrace();
 		}
 		resetInit++;
-		if (resetInit > 10) {
+		if (resetInit > 20) {
 			init();
 		}
 	}
@@ -84,6 +84,7 @@ public class UdpServerThread implements Runnable {
 		resetInit = 0;
 		labDisprobeNumber = labDisprobeNumberManager.getSumDisprobeNumber();// 显示数据实例
 		modifys = labModifyManager.getSumLabModify();
+		System.out.println("into over");
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class UdpServerThread implements Runnable {
 	 * @param str
 	 */
 	public void loadParamBySCM(String str) {
-
+		System.out.println("load");
 		String inputProbNum = "";// 板号+端口号
 		String createdOn = "";// 采集时间（单片机端）
 		Double temperature;// 采集温度
