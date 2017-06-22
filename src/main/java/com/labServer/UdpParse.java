@@ -46,9 +46,9 @@ public class UdpParse implements Runnable {
 	String displayProbNum = "";// 探头编号（客户定制）
 	String displayTabName = "";// 显示表名
 	String inputTabName = "";// 原数据表名
-
 	LabInputParamter labInputParamter;
 	LabDisplayParamter labDisplayParamter;
+	
 	public UdpParse(BlockingQueue<String> reciverQueue, BlockingQueue<LabDisplayParamter> displayQueue,
 			BlockingQueue<LabInputParamter> inputQueue) {
 		this.reciverQueue = reciverQueue;
@@ -120,7 +120,7 @@ public class UdpParse implements Runnable {
 		resetInit = 0;
 		labDisprobeNumber = labDisprobeNumberManager.getSumDisprobeNumber();// 显示数据实例
 		modifys = labModifyManager.getSumLabModify();
-		System.out.println("into over");
+		System.out.println("预加载参数刷新完毕");
 	}
 
 }

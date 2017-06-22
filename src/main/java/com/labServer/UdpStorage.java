@@ -25,12 +25,10 @@ public class UdpStorage implements Runnable {
 		this.inputQueue = inputQueue;
 		this.listDisplayItems = listDisplayItems;
 		this.listInputItems = listInputItems;
-
 	}
 
 	@Override
 	public void run() {
-
 		System.out.println("开始批处理...");
 		while (true) {
 			if (inputQueue.size() > 8) {
@@ -48,8 +46,7 @@ public class UdpStorage implements Runnable {
 				listInputItems.clear();
 				long checkendTime2 = System.currentTimeMillis();// 计时结束
 				float seconds2 = (checkendTime2 - checkstartTime2) / 1000F;// 计算耗时
-				System.out.println("批处理线程：耗时： " + Float.toString(seconds2) + " 秒=====");
-
+				System.out.println("=====批处理线程：耗时： " + Float.toString(seconds2) + " 秒=====");
 			}
 		}
 	}
