@@ -23,6 +23,7 @@ public class UdpReciver implements Runnable {
 		System.out.println("***服务器端启动，等待发送数据***");
 		while (true) {
 			try {
+				//long checkstartTime = System.currentTimeMillis();// 解析开始计时
 				String info = null;
 				InetAddress address = null;
 				int port = 808;// 返回客户端时传入的服务器监听端口
@@ -43,6 +44,9 @@ public class UdpReciver implements Runnable {
 				data2 = "Get Message!".getBytes();
 				packet2 = new DatagramPacket(data2, data2.length, address, port);
 				socket.send(packet2);// 返回至单片机
+				//long checkendTime = System.currentTimeMillis();// 计时结束
+				//float seconds = (checkendTime - checkstartTime) / 1000F;// 计算耗时
+				//System.out.println("~~~~~~接收耗时： " + Float.toString(seconds) + " 秒");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
