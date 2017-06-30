@@ -35,7 +35,8 @@ public class UdpServerWithThreads {
 		System.out.println("Queue Size " + reciverQueue.size());
 
 		// 接收线程实例化
-		UdpReciver udpReciver = new UdpReciver(reciverQueue, socket, packet);
+		UdpReciverFor400 udpReciver400 = new UdpReciverFor400(reciverQueue, socket, packet);
+		//UdpReciverFor18 udpReciverFor18= new UdpReciverFor18(reciverQueue, socket, packet);
 		UdpParse udpParse1 = new UdpParse(reciverQueue, displayQueue, inputQueue);
 		UdpParse udpParse2 = new UdpParse(reciverQueue, displayQueue, inputQueue);
 		//UdpParse udpParse3 = new UdpParse(reciverQueue, displayQueue, inputQueue);
@@ -45,7 +46,8 @@ public class UdpServerWithThreads {
 		// 线程池
 		ExecutorService service = Executors.newCachedThreadPool();
 		// 启动接收线程
-		service.execute(udpReciver);
+		service.execute(udpReciver400);
+		//service.execute(udpReciverFor18);
 		service.execute(udpParse1);
 		service.execute(udpParse2);
 		//service.execute(udpParse3);

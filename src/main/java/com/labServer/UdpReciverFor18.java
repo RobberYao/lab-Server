@@ -6,13 +6,13 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.concurrent.BlockingQueue;
 
-public class UdpReciver implements Runnable {
+public class UdpReciverFor18 implements Runnable {
 
 	private BlockingQueue<String> reciverQueue;
 	DatagramSocket socket = null;
 	DatagramPacket packet = null;
 
-	public UdpReciver(BlockingQueue<String> reciverQueue, DatagramSocket socket, DatagramPacket packet) {
+	public UdpReciverFor18(BlockingQueue<String> reciverQueue, DatagramSocket socket, DatagramPacket packet) {
 		this.reciverQueue = reciverQueue;
 		this.socket = socket;
 		this.packet = packet;
@@ -41,7 +41,7 @@ public class UdpReciver implements Runnable {
 
 				address = packet.getAddress();
 				port = packet.getPort();
-				data2 = "Get Message!".getBytes();
+				data2 = messageInfo.getBytes();
 				packet2 = new DatagramPacket(data2, data2.length, address, port);
 				socket.send(packet2);// 返回至单片机
 				//long checkendTime = System.currentTimeMillis();// 计时结束
