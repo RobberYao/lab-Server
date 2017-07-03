@@ -15,12 +15,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.apache.log4j.Logger;
+
 import com.labServer.model.LabDisplayParamter;
 import com.labServer.model.LabInputParamter;
 
 public class UdpServerWithThreads {
-
 	public static void main(String[] args) throws IOException {
+		Logger log = Logger.getLogger(UdpServerWithThreads.class);
 		BlockingQueue<String> reciverQueue = new LinkedBlockingDeque<>();
 		BlockingQueue<LabDisplayParamter> displayQueue = new LinkedBlockingQueue<>();
 		BlockingQueue<LabInputParamter> inputQueue = new LinkedBlockingQueue<>();
@@ -29,8 +31,8 @@ public class UdpServerWithThreads {
 		// 端口号808、IP地址默认为本地127.0.0.1
 		DatagramPacket packet = null;
 
-		System.out.println("***服务器2端启动，等待发送数据***");
-		System.out.println("Queue Size " + reciverQueue.size());
+		log.info("***服务器2端启动，等待发送数据***");
+		//System.out.println("Queue Size " + reciverQueue.size());
 
 		// 接收线程实例化
 		UdpReciverFor400 udpReciver400 = new UdpReciverFor400(reciverQueue, socket, packet);
@@ -47,7 +49,7 @@ public class UdpServerWithThreads {
 		service.execute(udpReciver400);
 		//service.execute(udpReciverFor18);
 		service.execute(udpParse1);
-		//service.execute(udpParse2);
+		service.execute(udpParse2);
 		//service.execute(udpParse3);
 		//service.execute(udpParse4);
 		service.execute(udpStorage);

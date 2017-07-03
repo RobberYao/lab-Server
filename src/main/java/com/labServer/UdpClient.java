@@ -6,7 +6,12 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 public class UdpClient implements Runnable {
+	public static Logger log = Logger.getLogger(UdpClient.class);
+	
 	public static void main(String[] args) throws Exception {
 
 	}
@@ -23,6 +28,7 @@ public class UdpClient implements Runnable {
 
 	@Override
 	public void run() {
+		//PropertyConfigurator.configure("log4j.properties"); 
 		DatagramSocket datagramSocket;
 		try {
 			int i = 1;
@@ -34,7 +40,7 @@ public class UdpClient implements Runnable {
 				byte[] buffer = msg.getBytes();
 				DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, 808);
 				datagramSocket.send(packet);
-				System.out.println("send");
+				log.info("send");
 				long before = System.currentTimeMillis();
 				// System.out.println(before);
 				 Thread.sleep(1000);

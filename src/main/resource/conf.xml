@@ -21,10 +21,10 @@
 					value="" />
 				<property
 					name="poolMaximumActiveConnections"
-					value="20" />
+					value="50" />
 				<property
 					name="poolMaximumIdleConnections"
-					value="10" />
+					value="0" />
 
 			</dataSource>
 		</environment>

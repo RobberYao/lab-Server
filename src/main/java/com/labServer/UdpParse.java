@@ -5,6 +5,8 @@ import java.net.DatagramSocket;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
+import org.apache.log4j.Logger;
+
 import com.labServer.manager.LabDisplayParamterManager;
 import com.labServer.manager.LabDisplayParamterManagerImpl;
 import com.labServer.manager.LabDisprobeNumberManager;
@@ -21,7 +23,7 @@ import com.labServer.util.RegexUtil;
 import com.labServer.util.SCMUtil;
 
 public class UdpParse implements Runnable {
-
+	public static Logger log = Logger.getLogger(UdpParse.class);
 	private BlockingQueue<String> reciverQueue;
 	private BlockingQueue<LabDisplayParamter> displayQueue;
 	private BlockingQueue<LabInputParamter> inputQueue;
@@ -85,7 +87,7 @@ public class UdpParse implements Runnable {
 							// 写入原数据分表（为了数据优化只能舍弃原数据的分表批量业务）
 							long before = System.currentTimeMillis();
 							labInputParamterManager.addLabInputParamter(labInputParamter);//
-							System.out.println("写入原数据分表耗时: " + (System.currentTimeMillis() - before));
+							log.info("写入原数据分表耗时: " + (System.currentTimeMillis() - before));
 							// 组装显示显示数据对象
 							labDisplayParamter = new LabDisplayParamter(inputProbNum, displayProbNum, createdOn,
 									temperature, humidity, displayTabName);
@@ -127,7 +129,7 @@ public class UdpParse implements Runnable {
 		resetInit = 0;
 		labDisprobeNumber = labDisprobeNumberManager.getSumDisprobeNumber();// 显示数据实例
 		modifys = labModifyManager.getSumLabModify();
-		System.out.println("预加载参数刷新完毕");
+		log.info("预加载参数刷新完毕");
 	}
 
 }
