@@ -40,7 +40,7 @@ public class UdpStorage implements Runnable {
 				long checkstartTime2 = System.currentTimeMillis();// 批处理开始计时
 				// 写入显示数据表
 				labDisplayParamterManager.addListItemsToDiffDisplay(listDisplayItems);
-				System.out.println("写入显示数据表耗时 ： " + (System.currentTimeMillis() - checkstartTime2));
+				System.out.println("写入显示数据分表耗时 ： " + (System.currentTimeMillis() - checkstartTime2));
 				checkstartTime2 = System.currentTimeMillis();
 				// 写入原始数据汇总表
 				labInputParamterManager.addListItemsToSumInput(listInputItems);

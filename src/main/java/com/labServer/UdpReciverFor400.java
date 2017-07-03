@@ -34,10 +34,10 @@ public class UdpReciverFor400 implements Runnable {
 				socket.receive(packet);// 此方法在接收到数据报之前会一直阻塞
 				
 				String messageInfo = new String(packet.getData(), 0, packet.getLength());
-				System.out.println("接收线程：服务器收到单片机：" + messageInfo);
+				//System.out.println("接收线程：服务器收到单片机：" + messageInfo);
 				
 				reciverQueue.add(messageInfo);// 加入队列
-				System.out.println("接收队列数：" + reciverQueue.size());
+				//System.out.println("接收队列数：" + reciverQueue.size());
 
 				address = packet.getAddress();
 				port = packet.getPort();
