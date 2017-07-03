@@ -24,7 +24,7 @@
 					value="20" />
 				<property
 					name="poolMaximumIdleConnections"
-					value="0" />
+					value="10" />
 
 			</dataSource>
 		</environment>

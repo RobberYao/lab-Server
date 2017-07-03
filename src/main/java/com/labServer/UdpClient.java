@@ -25,7 +25,8 @@ public class UdpClient implements Runnable {
 	public void run() {
 		DatagramSocket datagramSocket;
 		try {
-			while (true) {
+			int i = 1;
+			while (i <= 100) {
 				String msg1 = "8AD00001,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000;\"x20\"x17\"x06\"x19\"x10\"x38\"x00\"x00\"x00...";
 				datagramSocket = new DatagramSocket();
 				InetAddress address = InetAddress.getByName("127.0.0.1");
@@ -34,7 +35,10 @@ public class UdpClient implements Runnable {
 				DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, 808);
 				datagramSocket.send(packet);
 				System.out.println("send");
-				Thread.sleep(1000);
+				long before = System.currentTimeMillis();
+				// System.out.println(before);
+				// Thread.sleep(1000);
+				// System.out.println(System.currentTimeMillis() - before);
 				// 接收数据
 				// DatagramPacket inputPacket = new DatagramPacket(new
 				// byte[512],
@@ -44,6 +48,7 @@ public class UdpClient implements Runnable {
 				// inputPacket.getLength()));
 				// Thread.sleep(100);
 				// datagramSocket.close();
+				i++;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

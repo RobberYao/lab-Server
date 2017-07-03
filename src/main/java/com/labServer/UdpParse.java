@@ -48,7 +48,7 @@ public class UdpParse implements Runnable {
 	String inputTabName = "";// 原数据表名
 	LabInputParamter labInputParamter;
 	LabDisplayParamter labDisplayParamter;
-	
+
 	public UdpParse(BlockingQueue<String> reciverQueue, BlockingQueue<LabDisplayParamter> displayQueue,
 			BlockingQueue<LabInputParamter> inputQueue) {
 		this.reciverQueue = reciverQueue;
@@ -64,7 +64,8 @@ public class UdpParse implements Runnable {
 				if (reciverQueue.size() > 0) {
 					String[] paramterStr = SCMUtil.getArrayFromSCM(RegexUtil.getParams(reciverQueue.take()));// 将长数据按分号分割成数组
 					for (int i = 0; i < paramterStr.length; i++) {
-						long checkstartTime = System.currentTimeMillis();// 解析开始计时
+						// long checkstartTime = System.currentTimeMillis();//
+						// 解析开始计时
 						String[] paramters = SCMUtil.getParamterFromArray(paramterStr[i]);
 						inputProbNum = paramters[0];// 板号+端口号
 						createdOn = SCMUtil.getSimpledDateTime();
@@ -82,24 +83,30 @@ public class UdpParse implements Runnable {
 							labInputParamter = new LabInputParamter(inputProbNum, createdOn, temperature, humidity,
 									inputTabName);
 							// 写入原数据分表（为了数据优化只能舍弃原数据的分表批量业务）
+							long before = System.currentTimeMillis();
 							labInputParamterManager.addLabInputParamter(labInputParamter);//
+							System.out.println("写入原数据分表耗时: " + (System.currentTimeMillis() - before));
 							// 组装显示显示数据对象
-							labDisplayParamter = new LabDisplayParamter(inputProbNum, displayProbNum, createdOn, temperature,
-									humidity, displayTabName);
+							labDisplayParamter = new LabDisplayParamter(inputProbNum, displayProbNum, createdOn,
+									temperature, humidity, displayTabName);
 							// AVG for Temperture 10sec
-							labDisplayParamter.setDisTemperature(
-									labInputParamterManager.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTabName));
+							labDisplayParamter.setDisTemperature(labInputParamterManager
+									.getAVGInputTemperatureByCreatedOn(labInputParamter, inputTabName));
 							// 校准值计算
 							labDisplayParamterManager.calParamterByModify(labDisplayParamter, modifys);
 							// 加入原始批量数据
 							inputQueue.add(labInputParamter);
 							// 加入显示批量数据
 							displayQueue.add(labDisplayParamter);
-							System.out.println("解析线程：原始数据容器内容  ：" + inputQueue.size() + "条" + " ,显示数据容量内容  ："
-									+ displayQueue.size() + "条");
-							long checkendTime = System.currentTimeMillis();// 计时结束
-							float seconds = (checkendTime - checkstartTime) / 1000F;// 计算耗时
-							System.out.println("解析线程：解析耗时： " + Float.toString(seconds) + " 秒");
+							// System.out.println("解析线程：原始数据容器内容 ：" +
+							// inputQueue.size() + "条" + " ,显示数据容量内容 ："
+							// + displayQueue.size() + "条");
+							// long checkendTime = System.currentTimeMillis();//
+							// 计时结束
+							// float seconds = (checkendTime - checkstartTime) /
+							// 1000F;// 计算耗时
+							// System.out.println("解析线程：解析耗时： " +
+							// Float.toString(seconds) + " 秒");
 						}
 					}
 					resetInit++;
