@@ -36,7 +36,7 @@ public class UdpReciverFor400 implements Runnable {
 				
 				String messageInfo = new String(packet.getData(), 0, packet.getLength());
 				//System.out.println("接收线程：服务器收到单片机：" + messageInfo);
-				
+				log.info("~~~~~~~get message~~~~~~");
 				reciverQueue.add(messageInfo);// 加入队列
 				//System.out.println("接收队列数：" + reciverQueue.size());
 

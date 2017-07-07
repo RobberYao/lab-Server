@@ -68,6 +68,7 @@ public class UdpParse implements Runnable {
 					for (int i = 0; i < paramterStr.length; i++) {
 						// long checkstartTime = System.currentTimeMillis();//
 						// 解析开始计时
+						log.info("--------Start parse...---------");
 						String[] paramters = SCMUtil.getParamterFromArray(paramterStr[i]);
 						inputProbNum = paramters[0];// 板号+端口号
 						createdOn = SCMUtil.getSimpledDateTime();

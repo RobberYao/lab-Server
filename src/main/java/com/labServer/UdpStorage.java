@@ -29,7 +29,8 @@ public class UdpStorage implements Runnable {
 	public void run() {
 		System.out.println("开始批处理...");
 		while (true) {
-			if (inputQueue.size() > 8) {
+			if (inputQueue.size() !=0) {
+				log.info("*******Start Storage*******");
 				log.info("队列中数据已满8条，进行存储 ：" + inputQueue.size());
 				List<LabInputParamter> listInputItems = new ArrayList<>();// 批量原数据集合
 				List<LabDisplayParamter> listDisplayItems = new ArrayList<>();// 批量显示数据集合
