@@ -13,14 +13,14 @@ import com.labServer.manager.LabInputParamterManagerImpl;
 import com.labServer.model.LabDisplayParamter;
 import com.labServer.model.LabInputParamter;
 
-public class UdpStorage implements Runnable {
+public class Storage implements Runnable {
 	public static Logger log = Logger.getLogger(UdpReciverFor400.class);
 	private BlockingQueue<LabDisplayParamter> displayQueue;
 	private BlockingQueue<LabInputParamter> inputQueue;
 	private LabInputParamterManager labInputParamterManager = new LabInputParamterManagerImpl();
 	private LabDisplayParamterManager labDisplayParamterManager = new LabDisplayParamterManagerImpl();
 
-	public UdpStorage(BlockingQueue<LabDisplayParamter> displayQueue, BlockingQueue<LabInputParamter> inputQueue) {
+	public Storage(BlockingQueue<LabDisplayParamter> displayQueue, BlockingQueue<LabInputParamter> inputQueue) {
 		this.displayQueue = displayQueue;
 		this.inputQueue = inputQueue;
 	}

@@ -43,7 +43,7 @@ public class UdpClient implements Runnable {
 				log.info("send");
 				long before = System.currentTimeMillis();
 				// System.out.println(before);
-				Thread.sleep(1000);
+				Thread.sleep(100);
 				// System.out.println(System.currentTimeMillis() - before);
 				// 接收数据
 				// DatagramPacket inputPacket = new DatagramPacket(new

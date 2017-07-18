@@ -22,8 +22,8 @@ import com.labServer.model.LabModify;
 import com.labServer.util.RegexUtil;
 import com.labServer.util.SCMUtil;
 
-public class UdpParse implements Runnable {
-	public static Logger log = Logger.getLogger(UdpParse.class);
+public class Parse implements Runnable {
+	public static Logger log = Logger.getLogger(Parse.class);
 	private BlockingQueue<String> reciverQueue;
 	private BlockingQueue<LabDisplayParamter> displayQueue;
 	private BlockingQueue<LabInputParamter> inputQueue;
@@ -51,7 +51,7 @@ public class UdpParse implements Runnable {
 	LabInputParamter labInputParamter;
 	LabDisplayParamter labDisplayParamter;
 
-	public UdpParse(BlockingQueue<String> reciverQueue, BlockingQueue<LabDisplayParamter> displayQueue,
+	public Parse(BlockingQueue<String> reciverQueue, BlockingQueue<LabDisplayParamter> displayQueue,
 			BlockingQueue<LabInputParamter> inputQueue) {
 		this.reciverQueue = reciverQueue;
 		this.displayQueue = displayQueue;

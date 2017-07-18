@@ -17,7 +17,7 @@ public class LabInputParamterManagerImpl implements LabInputParamterManager {
 	 * @param labInputParamter
 	 */
 	public void addLabInputParamter(LabInputParamter labInputParamter) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
 		// LabInputParamterMapper labInputParamterMapper
 		// =sqlSession.getMapper(LabInputParamterMapper.class);
 		// int i =

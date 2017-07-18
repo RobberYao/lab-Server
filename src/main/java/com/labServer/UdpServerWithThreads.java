@@ -37,11 +37,11 @@ public class UdpServerWithThreads {
 		// 接收线程实例化
 		UdpReciverFor400 udpReciver400 = new UdpReciverFor400(reciverQueue, socket, packet);
 		//UdpReciverFor18 udpReciverFor18= new UdpReciverFor18(reciverQueue, socket, packet);
-		UdpParse udpParse1 = new UdpParse(reciverQueue, displayQueue, inputQueue);
-		UdpParse udpParse2 = new UdpParse(reciverQueue, displayQueue, inputQueue);
+		Parse udpParse1 = new Parse(reciverQueue, displayQueue, inputQueue);
+		Parse udpParse2 = new Parse(reciverQueue, displayQueue, inputQueue);
 		//UdpParse udpParse3 = new UdpParse(reciverQueue, displayQueue, inputQueue);
 		//UdpParse udpParse4 = new UdpParse(reciverQueue, displayQueue, inputQueue);
-		UdpStorage udpStorage = new UdpStorage(displayQueue, inputQueue);
+		Storage udpStorage = new Storage(displayQueue, inputQueue);
 
 		// 线程池
 		ExecutorService service = Executors.newCachedThreadPool();

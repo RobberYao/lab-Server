@@ -3,7 +3,7 @@ package com.labServer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class UdpClientWithThread {
+public class ClientWithThreads {
 
 	public static void main(String[] args) {
 		String msg1 = "+YAV:0005AABB,000 000 000 007 001 ,000 000 000 007 001 ,007 001 007 000 000 ,009 001 008 000 000 ,000 000 004 000 000 ,004 000 008 001 003 ,001 005 004 000 002 ,008 00C 00B 008 008 ,0 0,0 0,0 0 0 0,00,FF0203FF,V V V V V V V V,8AD00001,X,EEFF";
