@@ -20,9 +20,9 @@ import org.apache.log4j.Logger;
 import com.labServer.model.LabDisplayParamter;
 import com.labServer.model.LabInputParamter;
 
-public class UdpServerWithThreads {
+public class ServerWithThreads {
 	public static void main(String[] args) throws IOException {
-		Logger log = Logger.getLogger(UdpServerWithThreads.class);
+		Logger log = Logger.getLogger(ServerWithThreads.class);
 		BlockingQueue<String> reciverQueue = new LinkedBlockingDeque<>();
 		BlockingQueue<LabDisplayParamter> displayQueue = new LinkedBlockingQueue<>();
 		BlockingQueue<LabInputParamter> inputQueue = new LinkedBlockingQueue<>();
