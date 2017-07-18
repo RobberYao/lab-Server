@@ -8,23 +8,25 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyBatisUtil {
   // http://www.cnblogs.com/xdp-gacl/p/4262895.html
+	
+  private static SqlSessionFactory factory;
+	
   /**
    * 获取SqlSessionFactory
    * 
    * @return
    */
-  public static SqlSessionFactory getSqlSessionFactory() {
+  static {
     String resource = "conf.xml";
     InputStream is = MyBatisUtil.class.getClassLoader().getResourceAsStream(resource);
-    SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
-    return factory;
+    factory = new SqlSessionFactoryBuilder().build(is);
   }
 
   public static SqlSession getSqlSession() {
-    return getSqlSessionFactory().openSession();
+    return factory.openSession();
   }
 
   public static SqlSession getSqlSession(boolean isAutoCommit) {
-    return getSqlSessionFactory().openSession(isAutoCommit);
+    return factory.openSession(isAutoCommit);
   }
 }

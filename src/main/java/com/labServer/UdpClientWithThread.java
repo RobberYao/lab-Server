@@ -13,8 +13,8 @@ public class UdpClientWithThread {
 		String msg5 = "+YAV:0005AABB,000 000 000 007 001 ,000 000 000 007 001 ,007 001 007 000 000 ,009 001 008 000 000 ,000 000 004 000 000 ,004 000 008 001 003 ,001 005 004 000 002 ,008 00C 00B 008 008 ,0 0,0 0,0 0 0 0,00,FF0203FF,V V V V V V V V,8AD00005,X,EEFF";
 
 		UdpClient uc1 = new UdpClient(msg1);
-		UdpClient uc2 = new UdpClient(msg2);
-		UdpClient uc3 = new UdpClient(msg3);
+		//UdpClient uc2 = new UdpClient(msg2);
+		//UdpClient uc3 = new UdpClient(msg3);
 		//UdpClient uc4 = new UdpClient(msg4);
 		//UdpClient uc5 = new UdpClient(msg5);
 		//UdpClient uc6 = new UdpClient(msg5);

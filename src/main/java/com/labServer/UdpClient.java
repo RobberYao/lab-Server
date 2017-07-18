@@ -32,7 +32,7 @@ public class UdpClient implements Runnable {
 		DatagramSocket datagramSocket;
 		try {
 			int i = 1;
-			while (i <= 10) {
+			while (true) {
 				//String msg1 = "8AD00001,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000;\"x20\"x17\"x06\"x19\"x10\"x38\"x00\"x00\"x00...";
 				datagramSocket = new DatagramSocket();
 				InetAddress address = InetAddress.getByName("127.0.0.1");
